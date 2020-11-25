@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <RootNamespace>System.Net.Http.MessagePack</RootNamespace>
+    <Version>0.1.0</Version>
+    <PackageId>System.Net.Http.MessagePack</PackageId>
+    <Title>System.Net.Http.MessagePack</Title>
+    <Authors>Byndyusoft</Authors>
+    <Description>
+      Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
+
+      Commonly Used Types:
+      System.Net.Http.MessagePack.HttpClientMessagePackExtensions
+      System.Net.Http.MessagePack.HttpContentMessagePackExtensions
+      System.Net.Http.MessagePack.MessagePackContent
+    </Description>
+    <PackageTags>Byndyusoft;MessagePack;HttpClient;WebApi;AspNet</PackageTags>
+    <RepositoryUrl>https://github.com/Byndyusoft/System.Net.Http.MessagePack</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.2.60" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="icon.jpg" />
+  </ItemGroup>
+
+</Project>
