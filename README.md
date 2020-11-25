@@ -1,5 +1,5 @@
 # Byndyusoft.Net.Http.MessagePack
-This package adds support for MessagePack formatting and content negotiation to System.Net.Http
+ Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
 
 [![(License)](https://img.shields.io/github/license/Byndyusoft/Byndyusoft.Net.Http.MessagePack.svg)](LICENSE.txt)
 [![Nuget](http://img.shields.io/nuget/v/Byndyusoft.Net.Http.MessagePack.svg?maxAge=10800)](https://www.nuget.org/packages/Byndyusoft.Net.Http.MessagePack/) [![NuGet downloads](https://img.shields.io/nuget/dt/Byndyusoft.Net.Http.MessagePack.svg)](https://www.nuget.org/packages/Byndyusoft.Net.Http.MessagePack/) 
