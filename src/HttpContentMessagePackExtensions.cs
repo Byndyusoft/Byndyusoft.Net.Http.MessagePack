@@ -53,22 +53,40 @@ namespace System.Net.Http.MessagePack
         private static async Task<object> ReadFromMessagePackAsyncCore(HttpContent content, Type type,
             MessagePackSerializerOptions options, CancellationToken cancellationToken)
         {
+            using (var memoryStream = new MemoryStream())
             using (var contentStream =
                 await ReadHttpContentStreamAsync(content, cancellationToken).ConfigureAwait(false))
             {
-                return await MessagePackSerializer.DeserializeAsync(type, contentStream, options, cancellationToken)
-                    .ConfigureAwait(false);
+                await contentStream.CopyToAsync(memoryStream, 81920, cancellationToken).ConfigureAwait(false);
+
+                if (memoryStream.Length != 0)
+                {
+                    memoryStream.Position = 0;
+                    return await MessagePackSerializer.DeserializeAsync(type, memoryStream, options, cancellationToken)
+                        .ConfigureAwait(false);
+                }
+
+                return default;
             }
         }
 
         private static async Task<T> ReadFromMessagePackAsyncCore<T>(HttpContent content,
             MessagePackSerializerOptions options, CancellationToken cancellationToken)
         {
+            using (var memoryStream = new MemoryStream())
             using (var contentStream =
                 await ReadHttpContentStreamAsync(content, cancellationToken).ConfigureAwait(false))
             {
-                return await MessagePackSerializer.DeserializeAsync<T>(contentStream, options, cancellationToken)
-                    .ConfigureAwait(false);
+                await contentStream.CopyToAsync(memoryStream, 81920, cancellationToken).ConfigureAwait(false);
+
+                if (memoryStream.Length != 0)
+                {
+                    memoryStream.Position = 0;
+                    return await MessagePackSerializer.DeserializeAsync<T>(memoryStream, options, cancellationToken)
+                        .ConfigureAwait(false);
+                }
+
+                return default;
             }
         }
 

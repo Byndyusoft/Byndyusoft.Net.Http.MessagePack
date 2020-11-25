@@ -41,6 +41,16 @@ namespace System.Net.Http.Tests.Unit
         }
 
         [Fact]
+        public async Task ReadFromMessagePackAsync_NullObject_Test()
+        {
+            var content = MessagePackContent.Create<SimpleType>(null, _options);
+
+            var model = await content.ReadFromMessagePackAsync(typeof(SimpleType), _options);
+
+            Assert.Null(model);
+        }
+
+        [Fact]
         public async Task ReadFromMessagePackAsync_Generic_Test()
         {
             var content = MessagePackContent.Create(SimpleType.Create(), _options);
@@ -48,6 +58,16 @@ namespace System.Net.Http.Tests.Unit
             var model = await content.ReadFromMessagePackAsync<SimpleType>(_options);
 
             model.Verify();
+        }
+
+        [Fact]
+        public async Task ReadFromMessagePackAsync_Generic_NullObject_Test()
+        {
+            var content = MessagePackContent.Create<SimpleType>(null, _options);
+
+            var model = await content.ReadFromMessagePackAsync<SimpleType>(_options);
+
+            Assert.Null(model);
         }
     }
 }

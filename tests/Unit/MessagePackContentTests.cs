@@ -51,7 +51,7 @@ namespace System.Net.Http.Tests.Unit
         }
 
         [Fact]
-        public void Create_Default_Test()
+        public void Create_DefaultPropertyValues_Test()
         {
             var inputValue = SimpleType.Create();
 
@@ -77,7 +77,7 @@ namespace System.Net.Http.Tests.Unit
         }
 
         [Fact]
-        public void Create_Generic_Default_Test()
+        public void Create_Generic_DefaultPropertyValues_Test()
         {
             var inputValue = SimpleType.Create();
 
@@ -103,6 +103,18 @@ namespace System.Net.Http.Tests.Unit
         }
 
         [Fact]
+        public async Task ReadAsByteArrayAsync_NullObject_Test()
+        {
+            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+
+            var bytes = await content.ReadAsByteArrayAsync();
+            await using var stream = new MemoryStream(bytes);
+
+            var model = await MessagePackSerializer.DeserializeAsync<SimpleType>(stream, _options);
+            Assert.Null(model);
+        }
+
+        [Fact]
         public async Task ReadAsStreamArrayAsync_Test()
         {
             var inputValue = SimpleType.Create();
@@ -115,6 +127,17 @@ namespace System.Net.Http.Tests.Unit
         }
 
         [Fact]
+        public async Task ReadAsStreamArrayAsync_NullObject_Test()
+        {
+            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+
+            await using var stream = await content.ReadAsStreamAsync();
+
+            var model = await MessagePackSerializer.DeserializeAsync<SimpleType>(stream, _options);
+            Assert.Null(model);
+        }
+
+        [Fact]
         public async Task CopyToAsync_Test()
         {
             var inputValue = SimpleType.Create();
@@ -123,10 +146,22 @@ namespace System.Net.Http.Tests.Unit
 
             await content.CopyToAsync(stream);
             stream.Position = 0;
-
-
+            
             var model = await MessagePackSerializer.DeserializeAsync<SimpleType>(stream, _options);
             model.Verify();
+        }
+
+        [Fact]
+        public async Task CopyToAsync_NullObject_Test()
+        {
+            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            await using var stream = new MemoryStream();
+
+            await content.CopyToAsync(stream);
+            stream.Position = 0;
+
+            var model = await MessagePackSerializer.DeserializeAsync<SimpleType>(stream, _options);
+            Assert.Null(model);
         }
     }
 }
