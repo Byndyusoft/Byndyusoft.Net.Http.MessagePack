@@ -20,6 +20,25 @@ using (var client = new HttpClient())
     var product = await client.GetFromMessagePackAsync<Product>("http://localhost/api/products/1");
 }
 ```
+or
+```
+using (var client = new HttpClient())
+{
+    var response = await _client.GetAsync("http://localhost/api/products/1");
+    response.EnsureSuccessStatusCode();
+    var product = await response.Content.ReadFromMessagePackAsync<Product>();
+}
+```
+or
+```
+using (var client = new HttpClient())
+{
+    var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/api/products/1");
+    request.Content = MessagePackContent.Create(new Product());
+    var response = await _client.SendAsync(request);
+    response.EnsureSuccessStatusCode();
+}
+```
 
 If you tried to just use ```Microsoft.Net.Http```, the ```GetFromMessagePackAsync``` method wouldn't be available to you, and you'd only be able to read the content 
 as raw data such as bytes or string, and have to do the serializing / de-serializing yourself.
