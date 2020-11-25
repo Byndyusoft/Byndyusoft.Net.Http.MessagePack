@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>System.Net.Http.MessagePack</RootNamespace>
     <Version>0.1.0</Version>
-    <PackageId>System.Net.Http.MessagePack</PackageId>
-    <Title>System.Net.Http.MessagePack</Title>
+    <PackageId>Byndyusoft.Net.Http.MessagePack</PackageId>
+    <Title>Byndyusoft.Net.Http.MessagePack</Title>
     <Authors>Byndyusoft</Authors>
     <Description>
       Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
