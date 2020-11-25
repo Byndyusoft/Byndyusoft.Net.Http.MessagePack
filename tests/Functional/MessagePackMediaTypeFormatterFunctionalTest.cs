@@ -25,7 +25,7 @@ namespace System.Net.Http.Tests.Functional
 
         protected override void ConfigureHttpClient(HttpClient client)
         {
-            client.DefaultRequestHeaders.Accept.Add(MessagePackDefaults.DefaultMediaTypeHeader);
+            client.DefaultRequestHeaders.Accept.Add(MessagePackDefaults.MediaTypeHeader);
         }
 
         [Fact]

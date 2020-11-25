@@ -29,7 +29,7 @@ namespace System.Net.Http.MessagePack
             if (client == null) throw new ArgumentNullException(nameof(client));
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            requestMessage.Headers.Accept.Add(MessagePackDefaults.DefaultMediaTypeHeader);
+            requestMessage.Headers.Accept.Add(MessagePackDefaults.MediaTypeHeader);
 
             var taskResponse = client.SendAsync(requestMessage, HttpCompletionOption.ResponseContentRead,
                 cancellationToken);
@@ -55,7 +55,7 @@ namespace System.Net.Http.MessagePack
             if (client == null) throw new ArgumentNullException(nameof(client));
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            requestMessage.Headers.Accept.Add(MessagePackDefaults.DefaultMediaTypeHeader);
+            requestMessage.Headers.Accept.Add(MessagePackDefaults.MediaTypeHeader);
 
             var taskResponse = client.SendAsync(requestMessage, HttpCompletionOption.ResponseContentRead,
                 cancellationToken);
@@ -81,7 +81,7 @@ namespace System.Net.Http.MessagePack
             if (client == null) throw new ArgumentNullException(nameof(client));
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            requestMessage.Headers.Accept.Add(MessagePackDefaults.DefaultMediaTypeHeader);
+            requestMessage.Headers.Accept.Add(MessagePackDefaults.MediaTypeHeader);
 
             var taskResponse = client.SendAsync(requestMessage, HttpCompletionOption.ResponseContentRead,
                 cancellationToken);
@@ -107,7 +107,7 @@ namespace System.Net.Http.MessagePack
             if (client == null) throw new ArgumentNullException(nameof(client));
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            requestMessage.Headers.Accept.Add(MessagePackDefaults.DefaultMediaTypeHeader);
+            requestMessage.Headers.Accept.Add(MessagePackDefaults.MediaTypeHeader);
 
             var taskResponse = client.SendAsync(requestMessage, HttpCompletionOption.ResponseContentRead,
                 cancellationToken);

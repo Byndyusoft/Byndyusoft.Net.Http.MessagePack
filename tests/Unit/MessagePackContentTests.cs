@@ -19,8 +19,8 @@ namespace System.Net.Http.Tests.Unit
         public void Create_NullInputType_ThrowsException()
         {
             var exception = Assert.Throws<ArgumentNullException>(() =>
-                MessagePackContent.Create(new object(), null, MessagePackDefaults.DefaultMediaTypeHeader,
-                    MessagePackSerializerOptions.Standard));
+                MessagePackContent.Create(new object(), null,
+                    MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
 
             Assert.Equal("inputType", exception.ParamName);
         }
@@ -29,8 +29,8 @@ namespace System.Net.Http.Tests.Unit
         public void Create_InputValueInvalidType_ThrowsException()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                MessagePackContent.Create(new SimpleType(), typeof(int), MessagePackDefaults.DefaultMediaTypeHeader,
-                    MessagePackSerializerOptions.Standard));
+                MessagePackContent.Create(new SimpleType(), typeof(int),
+                    MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
 
             Assert.Equal(
                 $"The specified type {typeof(int)} must derive from the specific value's type {typeof(SimpleType)}.",
@@ -42,12 +42,12 @@ namespace System.Net.Http.Tests.Unit
         {
             var inputValue = SimpleType.Create();
 
-            var content = MessagePackContent.Create(inputValue, typeof(SimpleType), _mediaType, _options);
+            var content = MessagePackContent.Create(inputValue, typeof(SimpleType), _options, _mediaType);
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
             Assert.Same(_mediaType, content.Headers.ContentType);
-            Assert.Same(_options, content.Options);
+            Assert.Same(_options, content.SerializerOptions);
         }
 
         [Fact]
@@ -59,8 +59,8 @@ namespace System.Net.Http.Tests.Unit
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
-            Assert.Same(MessagePackDefaults.DefaultMediaTypeHeader, content.Headers.ContentType);
-            Assert.Same(MessagePackDefaults.DefaultSerializerOptions, content.Options);
+            Assert.Same(MessagePackDefaults.MediaTypeHeader, content.Headers.ContentType);
+            Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
 
         [Fact]
@@ -68,12 +68,12 @@ namespace System.Net.Http.Tests.Unit
         {
             var inputValue = SimpleType.Create();
 
-            var content = MessagePackContent.Create(inputValue, _mediaType, _options);
+            var content = MessagePackContent.Create(inputValue, _options, _mediaType);
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
             Assert.Same(_mediaType, content.Headers.ContentType);
-            Assert.Same(_options, content.Options);
+            Assert.Same(_options, content.SerializerOptions);
         }
 
         [Fact]
@@ -85,15 +85,15 @@ namespace System.Net.Http.Tests.Unit
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
-            Assert.Same(MessagePackDefaults.DefaultMediaTypeHeader, content.Headers.ContentType);
-            Assert.Same(MessagePackDefaults.DefaultSerializerOptions, content.Options);
+            Assert.Same(MessagePackDefaults.MediaTypeHeader, content.Headers.ContentType);
+            Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
 
         [Fact]
         public async Task ReadAsByteArrayAsync_Test()
         {
             var inputValue = SimpleType.Create();
-            var content = MessagePackContent.Create(inputValue, _mediaType, _options);
+            var content = MessagePackContent.Create(inputValue, _options, _mediaType);
 
             var bytes = await content.ReadAsByteArrayAsync();
             await using var stream = new MemoryStream(bytes);
@@ -106,7 +106,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadAsStreamArrayAsync_Test()
         {
             var inputValue = SimpleType.Create();
-            var content = MessagePackContent.Create(inputValue, _mediaType, _options);
+            var content = MessagePackContent.Create(inputValue, _options, _mediaType);
 
             await using var stream = await content.ReadAsStreamAsync();
 
@@ -118,7 +118,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task CopyToAsync_Test()
         {
             var inputValue = SimpleType.Create();
-            var content = MessagePackContent.Create(inputValue, _mediaType, _options);
+            var content = MessagePackContent.Create(inputValue, _options, _mediaType);
             await using var stream = new MemoryStream();
 
             await content.CopyToAsync(stream);

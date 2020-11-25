@@ -32,7 +32,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadFromMessagePackAsync_Test()
         {
-            var content = MessagePackContent.Create(SimpleType.Create(), options: _options);
+            var content = MessagePackContent.Create(SimpleType.Create(), _options);
 
             var model = await content.ReadFromMessagePackAsync(typeof(SimpleType), _options);
 
@@ -43,7 +43,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadFromMessagePackAsync_Generic_Test()
         {
-            var content = MessagePackContent.Create(SimpleType.Create(), options: _options);
+            var content = MessagePackContent.Create(SimpleType.Create(), _options);
 
             var model = await content.ReadFromMessagePackAsync<SimpleType>(_options);
 

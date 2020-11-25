@@ -21,14 +21,14 @@ namespace System.Net.Http.MessagePack
 
             Value = inputValue;
             ObjectType = inputType;
-            Headers.ContentType = mediaType ?? MessagePackDefaults.DefaultMediaTypeHeader;
-            Options = options ?? MessagePackDefaults.DefaultSerializerOptions;
+            Headers.ContentType = mediaType ?? MessagePackDefaults.MediaTypeHeader;
+            SerializerOptions = options ?? MessagePackDefaults.SerializerOptions;
         }
 
         /// <summary>
         ///     Options to control the behavior during serialization.
         /// </summary>
-        public MessagePackSerializerOptions Options { get; }
+        public MessagePackSerializerOptions SerializerOptions { get; }
 
         /// <summary>
         ///     Gets the type of the <see cref="Value" />  to be serialized by this instance.
@@ -46,13 +46,13 @@ namespace System.Net.Http.MessagePack
         /// </summary>
         /// <typeparam name="T">The type of the value to serialize.</typeparam>
         /// <param name="inputValue">The value to serialize.</param>
+        /// <param name="serializerOptions">Options to control the behavior during serialization.</param>
         /// <param name="mediaType">The media type to use for the content.</param>
-        /// <param name="options">Options to control the behavior during serialization.</param>
         /// <returns>A <see cref="MessagePackContent" /> instance.</returns>
-        public static MessagePackContent Create<T>(T inputValue, MediaTypeHeaderValue mediaType = null,
-            MessagePackSerializerOptions options = null)
+        public static MessagePackContent Create<T>(T inputValue,
+            MessagePackSerializerOptions serializerOptions = null, MediaTypeHeaderValue mediaType = null)
         {
-            return Create(inputValue, typeof(T), mediaType, options);
+            return Create(inputValue, typeof(T), serializerOptions, mediaType);
         }
 
         /// <summary>
@@ -61,18 +61,20 @@ namespace System.Net.Http.MessagePack
         /// </summary>
         /// <param name="inputValue">The value to serialize.</param>
         /// <param name="inputType">The type of the value to serialize.</param>
+        /// <param name="serializerOptions">Options to control the behavior during serialization.</param>
         /// <param name="mediaType">The media type to use for the content.</param>
-        /// <param name="options">Options to control the behavior during serialization.</param>
         /// <returns>A <see cref="MessagePackContent" /> instance.</returns>
         public static MessagePackContent Create(object inputValue, Type inputType,
-            MediaTypeHeaderValue mediaType = null, MessagePackSerializerOptions options = null)
+            MessagePackSerializerOptions serializerOptions = null,
+            MediaTypeHeaderValue mediaType = null)
         {
-            return new MessagePackContent(inputValue, inputType, mediaType, options);
+            return new MessagePackContent(inputValue, inputType, mediaType, serializerOptions);
         }
 
         protected override async Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
-            await MessagePackSerializer.SerializeAsync(ObjectType, stream, Value, Options).ConfigureAwait(false);
+            await MessagePackSerializer.SerializeAsync(ObjectType, stream, Value, SerializerOptions)
+                .ConfigureAwait(false);
         }
 
         protected override bool TryComputeLength(out long length)

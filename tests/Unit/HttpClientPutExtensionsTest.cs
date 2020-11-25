@@ -42,7 +42,7 @@ namespace System.Net.Http.Tests.Unit
             var response = await _client.PutAsMessagePackAsync(_uri, new object(), CancellationToken.None);
 
             var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
-            Assert.Same(MessagePackDefaults.DefaultSerializerOptions, content.Options);
+            Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace System.Net.Http.Tests.Unit
             var response = await _client.PutAsMessagePackAsync(_uri, new object(), _options, CancellationToken.None);
 
             var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
-            Assert.Same(_options, content.Options);
+            Assert.Same(_options, content.SerializerOptions);
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace System.Net.Http.Tests.Unit
                 await _client.PutAsMessagePackAsync(new Uri(_uri), new object(), _options, CancellationToken.None);
 
             var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
-            Assert.Same(_options, content.Options);
+            Assert.Same(_options, content.SerializerOptions);
         }
 
         [Fact]
@@ -89,7 +89,7 @@ namespace System.Net.Http.Tests.Unit
             var response = await _client.PutAsMessagePackAsync(new Uri(_uri), new object(), CancellationToken.None);
 
             var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
-            Assert.Same(MessagePackDefaults.DefaultSerializerOptions, content.Options);
+            Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
     }
 }

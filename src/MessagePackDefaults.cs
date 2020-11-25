@@ -6,12 +6,14 @@ namespace System.Net.Http.MessagePack
 {
     public static class MessagePackDefaults
     {
-        public static readonly string DefaultMediaType = MediaTypes.ApplicationXMessagePack;
+        public static readonly string MediaTypeFormat = "msgpack";
 
-        public static readonly MediaTypeWithQualityHeaderValue DefaultMediaTypeHeader =
-            new MediaTypeWithQualityHeaderValue(DefaultMediaType);
+        public static readonly string MediaType = MediaTypes.ApplicationXMessagePack;
 
-        public static readonly MessagePackSerializerOptions DefaultSerializerOptions =
+        public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader =
+            new MediaTypeWithQualityHeaderValue(MediaType);
+
+        public static readonly MessagePackSerializerOptions SerializerOptions =
             MessagePackSerializerOptions.Standard
                 .WithResolver(ContractlessStandardResolverAllowPrivate.Instance);
 

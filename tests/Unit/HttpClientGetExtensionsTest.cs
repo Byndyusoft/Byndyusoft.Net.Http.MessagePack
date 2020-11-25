@@ -42,12 +42,12 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task GetFromMessagePackAsync_StringUri_Test()
         {
-            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), options: _options);
+            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), _options);
 
             var result =
                 await _client.GetFromMessagePackAsync(_uri, typeof(SimpleType), _options, CancellationToken.None);
 
-            Assert.Contains(MessagePackDefaults.DefaultMediaTypeHeader, _handler.Request.Headers.Accept);
+            Assert.Contains(MessagePackDefaults.MediaTypeHeader, _handler.Request.Headers.Accept);
             Assert.NotNull(result);
             var model = Assert.IsType<SimpleType>(result);
             model.Verify();
@@ -74,7 +74,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task GetFromMessagePackAsync_Generic_StringUri_Test()
         {
-            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), options: _options);
+            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), _options);
 
             var result =
                 await _client.GetFromMessagePackAsync<SimpleType>(_uri, _options, CancellationToken.None);
@@ -104,13 +104,13 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task GetFromMessagePackAsync_Uri_Test()
         {
-            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), options: _options);
+            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), _options);
 
             var result =
                 await _client.GetFromMessagePackAsync(new Uri(_uri), typeof(SimpleType), _options,
                     CancellationToken.None);
 
-            Assert.Contains(MessagePackDefaults.DefaultMediaTypeHeader, _handler.Request.Headers.Accept);
+            Assert.Contains(MessagePackDefaults.MediaTypeHeader, _handler.Request.Headers.Accept);
             Assert.NotNull(result);
             var model = Assert.IsType<SimpleType>(result);
             model.Verify();
@@ -137,7 +137,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task GetFromMessagePackAsync_Generic_Uri_Test()
         {
-            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), options: _options);
+            _handler.ResponseContent = MessagePackContent.Create(SimpleType.Create(), _options);
 
             var result =
                 await _client.GetFromMessagePackAsync<SimpleType>(new Uri(_uri), _options, CancellationToken.None);

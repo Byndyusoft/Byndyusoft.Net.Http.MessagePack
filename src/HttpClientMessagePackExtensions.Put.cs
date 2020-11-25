@@ -28,7 +28,7 @@ namespace System.Net.Http.MessagePack
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
 
-            var content = MessagePackContent.Create(value, null, options);
+            var content = MessagePackContent.Create(value, options);
             return client.PutAsync(requestUri, content, cancellationToken);
         }
 
@@ -51,7 +51,7 @@ namespace System.Net.Http.MessagePack
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
 
-            var content = MessagePackContent.Create(value, null, options);
+            var content = MessagePackContent.Create(value, options);
             return client.PutAsync(requestUri, content, cancellationToken);
         }
 
