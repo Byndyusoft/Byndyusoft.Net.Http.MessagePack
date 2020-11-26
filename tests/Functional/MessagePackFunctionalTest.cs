@@ -2,8 +2,7 @@
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
 using MessagePack;
-using MessagePack.AspNetCoreMvcFormatter;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace System.Net.Http.Tests.Functional
@@ -17,10 +16,13 @@ namespace System.Net.Http.Tests.Functional
             _options = MessagePackSerializerOptions.Standard;
         }
 
-        protected override void ConfigureMvc(MvcOptions options)
+        protected override void ConfigureMvc(IMvcCoreBuilder builder)
         {
-            options.OutputFormatters.Add(new MessagePackOutputFormatter(_options));
-            options.InputFormatters.Add(new MessagePackInputFormatter(_options));
+            builder.AddMessagePackFormatters(
+                options =>
+                {
+                    options.SerializerOptions = _options;
+                });
         }
 
         protected override void ConfigureHttpClient(HttpClient client)
