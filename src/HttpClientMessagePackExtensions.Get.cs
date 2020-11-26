@@ -129,6 +129,8 @@ namespace System.Net.Http.MessagePack
         public static Task<object> GetFromMessagePackAsync(this HttpClient client, string requestUri, Type type,
             CancellationToken cancellationToken = default)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
             return client.GetFromMessagePackAsync(requestUri, type, null, cancellationToken);
         }
 
@@ -147,6 +149,8 @@ namespace System.Net.Http.MessagePack
         public static Task<object> GetFromMessagePackAsync(this HttpClient client, Uri requestUri, Type type,
             CancellationToken cancellationToken = default)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
             return client.GetFromMessagePackAsync(requestUri, type, null, cancellationToken);
         }
 
@@ -165,6 +169,8 @@ namespace System.Net.Http.MessagePack
         public static Task<TValue> GetFromMessagePackAsync<TValue>(this HttpClient client, string requestUri,
             CancellationToken cancellationToken = default)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
             return client.GetFromMessagePackAsync<TValue>(requestUri, null, cancellationToken);
         }
 
@@ -183,6 +189,8 @@ namespace System.Net.Http.MessagePack
         public static Task<TValue> GetFromMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
             CancellationToken cancellationToken = default)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
             return client.GetFromMessagePackAsync<TValue>(requestUri, null, cancellationToken);
         }
 

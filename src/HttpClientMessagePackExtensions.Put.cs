@@ -71,6 +71,8 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, string requestUri,
             TValue value, CancellationToken cancellationToken)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
             return client.PutAsMessagePackAsync(requestUri, value, null, cancellationToken);
         }
 
@@ -90,6 +92,8 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
             TValue value, CancellationToken cancellationToken)
         {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
             return client.PutAsMessagePackAsync(requestUri, value, null, cancellationToken);
         }
     }
