@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>System.Net.Http.MessagePack</RootNamespace>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
     <PackageId>Byndyusoft.Net.Http.MessagePack</PackageId>
     <Title>Byndyusoft.Net.Http.MessagePack</Title>
     <Authors>Byndyusoft</Authors>
@@ -16,7 +16,7 @@
       System.Net.Http.MessagePack.MessagePackContent
     </Description>
     <PackageTags>Byndyusoft;MessagePack;HttpClient;WebApi;AspNet</PackageTags>
-    <RepositoryUrl>https://github.com/Byndyusoft/System.Net.Http.MessagePack</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
