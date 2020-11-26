@@ -17,6 +17,12 @@ namespace System.Net.Http.MessagePack
             MessagePackSerializerOptions.Standard
                 .WithResolver(ContractlessStandardResolverAllowPrivate.Instance);
 
+        public static class MediaTypeHeaders
+        {
+            public static readonly MediaTypeWithQualityHeaderValue ApplicationMessagePack = new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationMessagePack);
+            public static readonly MediaTypeWithQualityHeaderValue ApplicationXMessagePack = new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationXMessagePack);
+        }
+
         public static class MediaTypes
         {
             public const string ApplicationMessagePack = "application/msgpack";
