@@ -7,11 +7,11 @@ using Xunit;
 
 namespace System.Net.Http.Tests.Functional
 {
-    public class MessagePackFunctionalTest : MvcTestFixture
+    public class FunctionalTest : MvcTestFixture
     {
         private readonly MessagePackSerializerOptions _options;
 
-        public MessagePackFunctionalTest()
+        public FunctionalTest()
         {
             _options = MessagePackSerializerOptions.Standard;
         }

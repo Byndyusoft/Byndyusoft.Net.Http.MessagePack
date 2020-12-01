@@ -6,7 +6,7 @@ using Xunit;
 
 namespace System.Net.Http.Tests.Unit
 {
-    public class HttpContentMessagePackExtensionsTests
+    public class HttpContentExtensionsTests
     {
         private readonly MessagePackSerializerOptions _options = MessagePackSerializerOptions.Standard
             .WithCompression(MessagePackCompression.Lz4Block);

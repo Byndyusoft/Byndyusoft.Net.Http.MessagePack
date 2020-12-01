@@ -68,6 +68,8 @@ namespace System.Net.Http.MessagePack
             MessagePackSerializerOptions serializerOptions = null,
             MediaTypeHeaderValue mediaType = null)
         {
+            if (inputType == null) throw new ArgumentNullException(nameof(inputType));
+
             return new MessagePackContent(inputValue, inputType, mediaType, serializerOptions);
         }
 

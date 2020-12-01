@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MessagePack;
 
@@ -22,12 +21,16 @@ namespace System.Net.Http.MessagePack
         ///     cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public static Task<object> ReadFromMessagePackAsync(this HttpContent content, Type type,
+        public static async Task<object> ReadFromMessagePackAsync(this HttpContent content, Type type,
             MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
-            return ReadFromMessagePackAsyncCore(content, type, options, cancellationToken);
+            if (content is MessagePackContent msgPackContent) return msgPackContent.Value;
+
+            using var readStream = await content.ReadAsStreamAsync().ConfigureAwait(false);
+            return await MessagePackSerializer.DeserializeAsync(type, readStream, options, cancellationToken)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -42,58 +45,13 @@ namespace System.Net.Http.MessagePack
         ///     cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public static Task<T> ReadFromMessagePackAsync<T>(this HttpContent content,
+        public static async Task<T> ReadFromMessagePackAsync<T>(this HttpContent content,
             MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default)
         {
             if (content == null) throw new ArgumentNullException(nameof(content));
 
-            return ReadFromMessagePackAsyncCore<T>(content, options, cancellationToken);
-        }
-
-        private static async Task<object> ReadFromMessagePackAsyncCore(HttpContent content, Type type,
-            MessagePackSerializerOptions options, CancellationToken cancellationToken)
-        {
-            using (var memoryStream = new MemoryStream())
-            using (var contentStream =
-                await ReadHttpContentStreamAsync(content, cancellationToken).ConfigureAwait(false))
-            {
-                await contentStream.CopyToAsync(memoryStream, 81920, cancellationToken).ConfigureAwait(false);
-
-                if (memoryStream.Length != 0)
-                {
-                    memoryStream.Position = 0;
-                    return await MessagePackSerializer.DeserializeAsync(type, memoryStream, options, cancellationToken)
-                        .ConfigureAwait(false);
-                }
-
-                return default;
-            }
-        }
-
-        private static async Task<T> ReadFromMessagePackAsyncCore<T>(HttpContent content,
-            MessagePackSerializerOptions options, CancellationToken cancellationToken)
-        {
-            using (var memoryStream = new MemoryStream())
-            using (var contentStream =
-                await ReadHttpContentStreamAsync(content, cancellationToken).ConfigureAwait(false))
-            {
-                await contentStream.CopyToAsync(memoryStream, 81920, cancellationToken).ConfigureAwait(false);
-
-                if (memoryStream.Length != 0)
-                {
-                    memoryStream.Position = 0;
-                    return await MessagePackSerializer.DeserializeAsync<T>(memoryStream, options, cancellationToken)
-                        .ConfigureAwait(false);
-                }
-
-                return default;
-            }
-        }
-
-        private static Task<Stream> ReadHttpContentStreamAsync(HttpContent content, CancellationToken cancellationToken)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            return content.ReadAsStreamAsync();
+            return (T) await ReadFromMessagePackAsync(content, typeof(T), options, cancellationToken)
+                .ConfigureAwait(false);
         }
     }
 }
