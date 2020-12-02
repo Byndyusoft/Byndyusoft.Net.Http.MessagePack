@@ -1,27 +1,26 @@
-# Byndyusoft.Net.Http.MessagePack
- Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
-
-[![(License)](https://img.shields.io/github/license/Byndyusoft/Byndyusoft.Net.Http.MessagePack.svg)](LICENSE.txt)
-[![Nuget](http://img.shields.io/nuget/v/Byndyusoft.Net.Http.MessagePack.svg?maxAge=10800)](https://www.nuget.org/packages/Byndyusoft.Net.Http.MessagePack/) [![NuGet downloads](https://img.shields.io/nuget/dt/Byndyusoft.Net.Http.MessagePack.svg)](https://www.nuget.org/packages/Byndyusoft.Net.Http.MessagePack/) 
-
 [MessagePack](https://www.nuget.org/packages/MessagePack/) is an efficient binary serialization format. It lets you exchange data among multiple languages like JSON. But it's faster and smaller. 
 Small integers are encoded into a single byte, and typical short strings require only one extra byte in addition to the strings themselves.
 
-```Byndyusoft.Net.Http.MessagePack``` actually depends on ```Microsoft.Net.Http```, and extends the ```HttpClient``` with ```MessagePack```
-features that you would likely need to talk to a RESTful service such as ASP.NET Web API.
+## Byndyusoft.Net.Http.MessagePack
+[![(License)](https://img.shields.io/github/license/Byndyusoft/Byndyusoft.Net.Http.MessagePack.svg)](LICENSE.txt)
+[![Nuget](http://img.shields.io/nuget/v/Byndyusoft.Net.Http.MessagePack.svg?maxAge=10800)](https://www.nuget.org/packages/Byndyusoft.Net.Http.MessagePack/) [![NuGet downloads](https://img.shields.io/nuget/dt/Byndyusoft.Net.Http.MessagePack.svg)](https://www.nuget.org/packages/Byndyusoft.Net.Http.MessagePack/) 
 
+Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
+
+This package actually depends on ```Microsoft.Net.Http```, and extends the ```HttpClient``` with ```MessagePack```
+features that you would likely need to talk to a RESTful service such as ASP.NET Web API.
 Package operates in the ```System.Net.Http``` namespace and adds some handy extension methods to ```HttpClient``` and ```HttpContent```.
 
 So for example:
 
-```
+```csharp
 using (var client = new HttpClient())
 {
     var product = await client.GetFromMessagePackAsync<Product>("http://localhost/api/products/1");
 }
 ```
 or
-```
+```csharp
 using (var client = new HttpClient())
 {
     var response = await _client.GetAsync("http://localhost/api/products/1");
@@ -30,7 +29,7 @@ using (var client = new HttpClient())
 }
 ```
 or
-```
+```csharp
 using (var client = new HttpClient())
 {
     var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/api/products/1");
@@ -45,17 +44,47 @@ as raw data such as bytes or string, and have to do the serializing / de-seriali
 
 You also get extension methods to PUT / POST back to the service in ```MessagePack``` format without having to do that yourself:
 
-```
-// Save the ProductInfo model back to the API service
+```csharp
 await client.PutAsMessagePackAsync("http://localhost/api/products/1", product);
 await client.PostAsMessagePackAsync("http://localhost/api/products/1", product);
 ```
 
-## Installing
+### Installing
 
 ```shell
 dotnet add package Byndyusoft.Net.Http.MessagePack
 ```
+
+***
+
+## Byndyusoft.Net.Http.Formatting.MessagePack
+
+[![(License)](https://img.shields.io/github/license/Byndyusoft/Byndyusoft.Net.Http.Formatting.MessagePack.svg)](LICENSE.txt)
+[![Nuget](http://img.shields.io/nuget/v/Byndyusoft.Net.Http.Formatting.MessagePack.svg?maxAge=10800)](https://www.nuget.org/packages/Byndyusoft.Net.Http.Formatting.MessagePack/) [![NuGet downloads](https://img.shields.io/nuget/dt/Byndyusoft.Net.Http.Formatting.MessagePack.svg)](https://www.nuget.org/packages/Byndyusoft.Net.Http.Formatting.MessagePack/) 
+
+
+This package adds `MessagePackMediaTypeFormatter` class for formatting `HttpClient` requests and responses.
+
+So for example:
+
+```csharp
+using (var client = new HttpClient())
+{
+	var formatter = new MessagePackMediaTypeFormatter();
+	var request = new SearchProductRequest { Name = 'iphone', OrderBy = 'id' };
+	var content = new ObjectContent<SearchProductRequest>(request, formatter);
+	var response = await client.PostAsync("http://localhost/api/products:search");
+	var products = await response.Content.ReadAsAsync<Product[]>(new[] {formatter});
+}
+```
+
+### Installing
+
+```shell
+dotnet add package Byndyusoft.Net.Http.Formatting.MessagePack
+```
+
+***
 
 # Contributing
 
@@ -78,10 +107,6 @@ Make sure you have installed all of the following prerequisites on your developm
 ### tests
 
 - unit-tests
-
-### example
-
-- example console application
 
 ## Package development lifecycle
 

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>System.Net.Http.Formatting</RootNamespace>
+    <PackageId>Byndyusoft.Net.Http.Formatting.MessagePack</PackageId>
+    <Title>Byndyusoft.Net.Http.Formatting.MessagePack</Title>
+    <Description>This package adds support for MessagePack formatting and content negotiation to System.Net.Http</Description>
+    <PackageTags>Byndyusoft;MessagePack;HttpClient;WebApi;AspNet</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Byndyusoft.Net.Http.MessagePack\Byndyusoft.Net.Http.MessagePack.csproj" />
+  </ItemGroup>
+
+</Project>

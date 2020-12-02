@@ -146,7 +146,7 @@ namespace System.Net.Http.Tests.Unit
 
             await content.CopyToAsync(stream);
             stream.Position = 0;
-            
+
             var model = await MessagePackSerializer.DeserializeAsync<SimpleType>(stream, _options);
             model.Verify();
         }

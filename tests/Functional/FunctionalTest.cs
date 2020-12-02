@@ -19,10 +19,7 @@ namespace System.Net.Http.Tests.Functional
         protected override void ConfigureMvc(IMvcCoreBuilder builder)
         {
             builder.AddMessagePackFormatters(
-                options =>
-                {
-                    options.SerializerOptions = _options;
-                });
+                options => { options.SerializerOptions = _options; });
         }
 
         protected override void ConfigureHttpClient(HttpClient client)

@@ -24,10 +24,21 @@ jobs:
       - name: test
         run: dotnet test
         
-      - name: publish
+      - name: publish Byndyusoft.Net.Http.MessagePack
         uses: rohith/publish-nuget@v2
         with:
-          PROJECT_FILE_PATH: src/Byndyusoft.Net.Http.MessagePack.csproj
+          PROJECT_FILE_PATH: src/Byndyusoft.Net.Http.MessagePack/Byndyusoft.Net.Http.MessagePack.csproj
+          VERSION_FILE_PATH: Directory.Build.props
+          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
+          TAG_COMMIT: false
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          INCLUDE_SYMBOLS: true
+
+      - name: publish Byndyusoft.Net.Http.Formatting.MessagePack
+        uses: rohith/publish-nuget@v2
+        with:
+          PROJECT_FILE_PATH: src/Byndyusoft.Net.Http.Formatting.MessagePack/Byndyusoft.Net.Http.Formatting.MessagePack.csproj
+          VERSION_FILE_PATH: Directory.Build.props
           VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
           TAG_COMMIT: false
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}

@@ -15,7 +15,7 @@ namespace System.Net.Http.Tests
             Stream = stream;
         }
 
-        private MemoryStream Stream { get; }
+        public MemoryStream Stream { get; }
 
         public async Task WriteObjectAsync<T>(T value, MessagePackSerializerOptions serializerOptions)
         {

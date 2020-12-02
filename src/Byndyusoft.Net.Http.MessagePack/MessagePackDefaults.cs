@@ -19,8 +19,11 @@ namespace System.Net.Http.MessagePack
 
         public static class MediaTypeHeaders
         {
-            public static readonly MediaTypeWithQualityHeaderValue ApplicationMessagePack = new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationMessagePack);
-            public static readonly MediaTypeWithQualityHeaderValue ApplicationXMessagePack = new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationXMessagePack);
+            public static readonly MediaTypeWithQualityHeaderValue ApplicationMessagePack =
+                new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationMessagePack);
+
+            public static readonly MediaTypeWithQualityHeaderValue ApplicationXMessagePack =
+                new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationXMessagePack);
         }
 
         public static class MediaTypes
