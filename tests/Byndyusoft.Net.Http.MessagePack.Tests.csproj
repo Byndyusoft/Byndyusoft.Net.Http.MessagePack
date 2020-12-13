@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Byndyusoft.Net.Http.Formatting.MessagePack\Byndyusoft.Net.Http.Formatting.MessagePack.csproj" />
+    <ProjectReference Include="..\src\Byndyusoft.Net.Http.MessagePack.csproj" />
   </ItemGroup>
 
 </Project>

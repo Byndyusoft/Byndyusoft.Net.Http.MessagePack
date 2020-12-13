@@ -49,23 +49,7 @@ await client.PutAsMessagePackAsync("http://localhost/api/products/1", product);
 await client.PostAsMessagePackAsync("http://localhost/api/products/1", product);
 ```
 
-### Installing
-
-```shell
-dotnet add package Byndyusoft.Net.Http.MessagePack
-```
-
-***
-
-## Byndyusoft.Net.Http.Formatting.MessagePack
-
-[![(License)](https://img.shields.io/github/license/Byndyusoft/Byndyusoft.Net.Http.Formatting.MessagePack.svg)](LICENSE.txt)
-[![Nuget](http://img.shields.io/nuget/v/Byndyusoft.Net.Http.Formatting.MessagePack.svg?maxAge=10800)](https://www.nuget.org/packages/Byndyusoft.Net.Http.Formatting.MessagePack/) [![NuGet downloads](https://img.shields.io/nuget/dt/Byndyusoft.Net.Http.Formatting.MessagePack.svg)](https://www.nuget.org/packages/Byndyusoft.Net.Http.Formatting.MessagePack/) 
-
-
-This package adds `MessagePackMediaTypeFormatter` class for formatting `HttpClient` requests and responses.
-
-So for example:
+This package also adds `MessagePackMediaTypeFormatter` class for formatting `HttpClient` requests and responses:
 
 ```csharp
 using (var client = new HttpClient())
@@ -81,7 +65,7 @@ using (var client = new HttpClient())
 ### Installing
 
 ```shell
-dotnet add package Byndyusoft.Net.Http.Formatting.MessagePack
+dotnet add package Byndyusoft.Net.Http.MessagePack
 ```
 
 ***
