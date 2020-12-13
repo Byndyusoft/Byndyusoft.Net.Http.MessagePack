@@ -57,7 +57,7 @@ using (var client = new HttpClient())
 	var formatter = new MessagePackMediaTypeFormatter();
 	var request = new SearchProductRequest { Name = 'iphone', OrderBy = 'id' };
 	var content = new ObjectContent<SearchProductRequest>(request, formatter);
-	var response = await client.PostAsync("http://localhost/api/products:search");
+	var response = await client.PostAsync("http://localhost/api/products:search", content);
 	var products = await response.Content.ReadAsAsync<Product[]>(new[] {formatter});
 }
 ```
