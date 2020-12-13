@@ -1,8 +1,0 @@
-<Project>
-  <PropertyGroup>
-    <Version>0.4.0</Version>
-    <Authors>Byndyusoft</Authors>
-    <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
-</Project>

@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <PackageIcon>icon.png</PackageIcon>
+    <LangVersion>8</LangVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RootNamespace>System.Net.Http.MessagePack</RootNamespace>
     <PackageId>Byndyusoft.Net.Http.MessagePack</PackageId>
     <Title>Byndyusoft.Net.Http.MessagePack</Title>
@@ -13,11 +17,19 @@
       System.Net.Http.MessagePack.MessagePackContent
     </Description>
     <PackageTags>Byndyusoft;MessagePack;HttpClient;WebApi;AspNet</PackageTags>
+    <Version>0.5.0</Version>
+    <Authors>Byndyusoft</Authors>
+    <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="2.2.60" />
+    <None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Byndyusoft.Net.Http" Version="0.1.0" />
+    <PackageReference Include="MessagePack" Version="2.2.85" />
+  </ItemGroup>
 
 </Project>

@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DA39BE86-61CD-4CE0-9BC5-0600F5E2B901}"
-	ProjectSection(SolutionItems) = preProject
-		src\Directory.Build.props = src\Directory.Build.props
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{6EA7A833-9A42-4FF0-B9B9-CB2B42210FA1}"
 EndProject
@@ -25,15 +22,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		CONTRIBUTING.md = CONTRIBUTING.md
-		Directory.Build.props = Directory.Build.props
 		icon.png = icon.png
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byndyusoft.Net.Http.MessagePack", "src\Byndyusoft.Net.Http.MessagePack\Byndyusoft.Net.Http.MessagePack.csproj", "{ACCC010F-AB24-4A3B-9F3C-5C3153C34574}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byndyusoft.Net.Http.Formatting.MessagePack", "src\Byndyusoft.Net.Http.Formatting.MessagePack\Byndyusoft.Net.Http.Formatting.MessagePack.csproj", "{93441CC5-6367-4CB1-BB0D-AC85093AEB12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byndyusoft.Net.Http.MessagePack", "src\Byndyusoft.Net.Http.MessagePack.csproj", "{CBB6A140-9806-4CE8-91B0-2B3AABB51157}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +39,10 @@ Global
 		{2EFF172C-EA33-4097-A21B-DC466796B9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EFF172C-EA33-4097-A21B-DC466796B9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EFF172C-EA33-4097-A21B-DC466796B9EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACCC010F-AB24-4A3B-9F3C-5C3153C34574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACCC010F-AB24-4A3B-9F3C-5C3153C34574}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACCC010F-AB24-4A3B-9F3C-5C3153C34574}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACCC010F-AB24-4A3B-9F3C-5C3153C34574}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93441CC5-6367-4CB1-BB0D-AC85093AEB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93441CC5-6367-4CB1-BB0D-AC85093AEB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93441CC5-6367-4CB1-BB0D-AC85093AEB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93441CC5-6367-4CB1-BB0D-AC85093AEB12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB6A140-9806-4CE8-91B0-2B3AABB51157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB6A140-9806-4CE8-91B0-2B3AABB51157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB6A140-9806-4CE8-91B0-2B3AABB51157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB6A140-9806-4CE8-91B0-2B3AABB51157}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,8 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D3AAD0D4-C6AE-4AB8-BE12-5814883EF401} = {6EA7A833-9A42-4FF0-B9B9-CB2B42210FA1}
 		{2EFF172C-EA33-4097-A21B-DC466796B9EF} = {9DC25B14-991C-43F5-B620-BA3223244C78}
-		{ACCC010F-AB24-4A3B-9F3C-5C3153C34574} = {DA39BE86-61CD-4CE0-9BC5-0600F5E2B901}
-		{93441CC5-6367-4CB1-BB0D-AC85093AEB12} = {DA39BE86-61CD-4CE0-9BC5-0600F5E2B901}
+		{CBB6A140-9806-4CE8-91B0-2B3AABB51157} = {DA39BE86-61CD-4CE0-9BC5-0600F5E2B901}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1AE52913-E5A4-4235-9DF4-56A3403A3031}
