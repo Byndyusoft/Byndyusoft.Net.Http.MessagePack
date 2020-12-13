@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
+using System.Net.Http.MessagePack.Formatting;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
 using MessagePack;

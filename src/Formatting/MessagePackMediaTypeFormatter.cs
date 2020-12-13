@@ -1,10 +1,10 @@
 ﻿using System.IO;
-using System.Net.Http.MessagePack;
+using System.Net.Http.Formatting;
 using System.Threading;
 using System.Threading.Tasks;
 using MessagePack;
 
-namespace System.Net.Http.Formatting
+namespace System.Net.Http.MessagePack.Formatting
 {
     /// <summary>
     ///     <see cref="MediaTypeFormatter" /> class to handle MessagePack.
