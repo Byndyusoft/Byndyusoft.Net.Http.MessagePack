@@ -17,7 +17,7 @@
       System.Net.Http.MessagePack.MessagePackContent
       System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
     </Description>
-    <PackageTags>Byndyusoft;MessagePack;HttpClient;WebApi;AspNet</PackageTags>
+    <PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
     <Version>0.5.0</Version>
     <Authors>Byndyusoft</Authors>
     <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
