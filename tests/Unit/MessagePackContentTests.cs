@@ -1,9 +1,9 @@
-﻿using System.IO;
+using MessagePack;
+using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
-using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -19,22 +19,22 @@ namespace System.Net.Http.Tests.Unit
         public void Create_NullInputType_ThrowsException()
         {
             var exception = Assert.Throws<ArgumentNullException>(() =>
-                MessagePackContent.Create(new object(), null,
-                    MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
+                MessagePackContent.Create(null!,
+                    new object(), MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
 
-            Assert.Equal("inputType", exception.ParamName);
+            Assert.Equal("type", exception.ParamName);
         }
 
         [Fact]
         public void Create_InputValueInvalidType_ThrowsException()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                MessagePackContent.Create(new SimpleType(), typeof(int),
-                    MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
+                MessagePackContent.Create(typeof(Int32),
+                    new SimpleType(), MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
 
-            Assert.Equal(
-                $"The specified type {typeof(int)} must derive from the specific value's type {typeof(SimpleType)}.",
-                exception.Message);
+            Assert.Contains(
+                @$"An object of type '{nameof(SimpleType)}' cannot be used with a type parameter of '{nameof(Int32)}'.",
+            exception.Message);
         }
 
         [Fact]
@@ -42,11 +42,11 @@ namespace System.Net.Http.Tests.Unit
         {
             var inputValue = SimpleType.Create();
 
-            var content = MessagePackContent.Create(inputValue, typeof(SimpleType), _options, _mediaType);
+            var content = MessagePackContent.Create(typeof(SimpleType), inputValue, _options, _mediaType);
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
-            Assert.Same(_mediaType, content.Headers.ContentType);
+            Assert.Equal(_mediaType, content.Headers.ContentType);
             Assert.Same(_options, content.SerializerOptions);
         }
 
@@ -55,11 +55,11 @@ namespace System.Net.Http.Tests.Unit
         {
             var inputValue = SimpleType.Create();
 
-            var content = MessagePackContent.Create(inputValue, typeof(SimpleType));
+            var content = MessagePackContent.Create(typeof(SimpleType), inputValue);
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
-            Assert.Same(MessagePackDefaults.MediaTypeHeader, content.Headers.ContentType);
+            Assert.Equal(MessagePackDefaults.MediaTypeHeader, content.Headers.ContentType);
             Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
 
@@ -72,7 +72,7 @@ namespace System.Net.Http.Tests.Unit
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
-            Assert.Same(_mediaType, content.Headers.ContentType);
+            Assert.Equal(_mediaType, content.Headers.ContentType);
             Assert.Same(_options, content.SerializerOptions);
         }
 
@@ -85,7 +85,7 @@ namespace System.Net.Http.Tests.Unit
 
             Assert.Same(inputValue, content.Value);
             Assert.Same(typeof(SimpleType), content.ObjectType);
-            Assert.Same(MessagePackDefaults.MediaTypeHeader, content.Headers.ContentType);
+            Assert.Equal(MessagePackDefaults.MediaTypeHeader, content.Headers.ContentType);
             Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
 

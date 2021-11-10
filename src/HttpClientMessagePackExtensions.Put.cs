@@ -1,6 +1,6 @@
-﻿using System.Threading;
+﻿using MessagePack;
+using System.Threading;
 using System.Threading.Tasks;
-using MessagePack;
 
 namespace System.Net.Http.MessagePack
 {
@@ -24,30 +24,7 @@ namespace System.Net.Http.MessagePack
         /// </param>
         /// <returns>A task object representing the asynchronous operation.</returns>
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, string requestUri,
-            TValue value, MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default)
-        {
-            if (client == null) throw new ArgumentNullException(nameof(client));
-
-            var content = MessagePackContent.Create(value, options);
-            return client.PutAsync(requestUri, content, cancellationToken);
-        }
-
-        /// <summary>
-        ///     Send a PUT request to the specified Uri containing the <paramref name="value" /> serialized as MessagePack in the
-        ///     request body.
-        /// </summary>
-        /// <typeparam name="TValue">The type of the value to serialize.</typeparam>
-        /// <param name="client">The client used to make the request.</param>
-        /// <param name="requestUri">The Uri the request is sent to.</param>
-        /// <param name="value">The value to serialize.</param>
-        /// <param name="options">Options for running the serialization.</param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used by other objects or threads to receive notice of
-        ///     cancellation.
-        /// </param>
-        /// <returns>A task object representing the asynchronous operation.</returns>
-        public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
-            TValue value, MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default)
+            TValue value, MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
 
@@ -69,11 +46,34 @@ namespace System.Net.Http.MessagePack
         /// </param>
         /// <returns>A task object representing the asynchronous operation.</returns>
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, string requestUri,
-            TValue value, CancellationToken cancellationToken)
+            TValue value, CancellationToken cancellationToken = default)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
 
             return client.PutAsMessagePackAsync(requestUri, value, null, cancellationToken);
+        }
+
+        /// <summary>
+        ///     Send a PUT request to the specified Uri containing the <paramref name="value" /> serialized as MessagePack in the
+        ///     request body.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value to serialize.</typeparam>
+        /// <param name="client">The client used to make the request.</param>
+        /// <param name="requestUri">The Uri the request is sent to.</param>
+        /// <param name="value">The value to serialize.</param>
+        /// <param name="options">Options for running the serialization.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
+        /// <returns>A task object representing the asynchronous operation.</returns>
+        public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
+            TValue value, MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
+        {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+
+            var content = MessagePackContent.Create(value, options);
+            return client.PutAsync(requestUri, content, cancellationToken);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace System.Net.Http.MessagePack
         /// </param>
         /// <returns>A task object representing the asynchronous operation.</returns>
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
-            TValue value, CancellationToken cancellationToken)
+            TValue value, CancellationToken cancellationToken = default)
         {
             if (client == null) throw new ArgumentNullException(nameof(client));
 

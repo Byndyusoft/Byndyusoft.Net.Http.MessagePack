@@ -1,25 +1,20 @@
-﻿using System.Net.Http.MessagePack;
+﻿using MessagePack;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
-using MessagePack;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace System.Net.Http.Tests.Functional
 {
     public class FunctionalTest : MvcTestFixture
     {
-        private readonly MessagePackSerializerOptions _options;
-
-        public FunctionalTest()
-        {
-            _options = MessagePackSerializerOptions.Standard;
-        }
+        private static readonly MessagePackSerializerOptions Options = MessagePackSerializerOptions.Standard;
 
         protected override void ConfigureMvc(IMvcCoreBuilder builder)
         {
             builder.AddMessagePackFormatters(
-                options => { options.SerializerOptions = _options; });
+                options => { options.SerializerOptions = Options; });
         }
 
         protected override void ConfigureHttpClient(HttpClient client)
@@ -34,7 +29,7 @@ namespace System.Net.Http.Tests.Functional
             var input = SimpleType.Create();
 
             // Act
-            var response = await Client.PostAsMessagePackAsync("/msgpack-formatter", input, _options);
+            var response = await Client.PostAsMessagePackAsync("/msgpack-formatter", input, Options);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromMessagePackAsync<SimpleType>();
 
@@ -51,7 +46,7 @@ namespace System.Net.Http.Tests.Functional
             var input = SimpleType.Create();
 
             // Act
-            var response = await Client.PutAsMessagePackAsync("/msgpack-formatter", input, _options);
+            var response = await Client.PutAsMessagePackAsync("/msgpack-formatter", input, Options);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromMessagePackAsync<SimpleType>();
 
@@ -66,7 +61,7 @@ namespace System.Net.Http.Tests.Functional
         public async Task GetFromMessagePackAsync()
         {
             // Act
-            var result = await Client.GetFromMessagePackAsync<SimpleType>("/msgpack-formatter", _options);
+            var result = await Client.GetFromMessagePackAsync<SimpleType>("/msgpack-formatter", Options);
 
             // Assert
             Assert.NotNull(result);
