@@ -20,7 +20,7 @@
 			System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
 		</Description>
 		<PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
-		<Version>0.5.0</Version>
+		<Version>0.5.1</Version>
 		<Authors>Byndyusoft</Authors>
 		<RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
