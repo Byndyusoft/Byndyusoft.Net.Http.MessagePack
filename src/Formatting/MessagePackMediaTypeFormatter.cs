@@ -50,7 +50,7 @@ namespace System.Net.Http.MessagePack.Formatting
         }
 
         /// <inheritdoc />
-        public override async Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
+        public override async Task WriteToStreamAsync(Type type, object? value, Stream writeStream, HttpContent content,
             TransportContext? transportContext, CancellationToken cancellationToken = default)
         {
             if (type is null) throw new ArgumentNullException(nameof(type));
