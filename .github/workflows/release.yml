@@ -20,9 +20,6 @@ jobs:
           
       - name: build
         run: dotnet build
-
-      - name: test
-        run: dotnet test
         
       - name: publish
         uses: alirezanet/publish-nuget@v3.0.0
