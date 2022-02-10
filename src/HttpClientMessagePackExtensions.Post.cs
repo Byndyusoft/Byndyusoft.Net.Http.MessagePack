@@ -24,9 +24,10 @@ namespace System.Net.Http.MessagePack
         /// </param>
         /// <returns>A task object representing the asynchronous operation.</returns>
         public static Task<HttpResponseMessage> PostAsMessagePackAsync<TValue>(this HttpClient client,
-            string requestUri, TValue value, MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
+            string requestUri, TValue value, MessagePackSerializerOptions? options,
+            CancellationToken cancellationToken = default)
         {
-           Guard.NotNull(client,nameof(client));
+            Guard.NotNull(client, nameof(client));
 
             var content = MessagePackContent.Create(value, options);
             return client.PostAsync(requestUri, content, cancellationToken);
@@ -48,7 +49,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PostAsMessagePackAsync<TValue>(this HttpClient client,
             string requestUri, TValue value, CancellationToken cancellationToken = default)
         {
-           Guard.NotNull(client,nameof(client));
+            Guard.NotNull(client, nameof(client));
 
             return client.PostAsMessagePackAsync(requestUri, value, null, cancellationToken);
         }
@@ -70,7 +71,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PostAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
             TValue value, MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
         {
-           Guard.NotNull(client,nameof(client));
+            Guard.NotNull(client, nameof(client));
 
             var content = MessagePackContent.Create(value, options);
             return client.PostAsync(requestUri, content, cancellationToken);
@@ -92,7 +93,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PostAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
             TValue value, CancellationToken cancellationToken = default)
         {
-           Guard.NotNull(client,nameof(client));
+            Guard.NotNull(client, nameof(client));
 
             return client.PostAsMessagePackAsync(requestUri, value, null, cancellationToken);
         }

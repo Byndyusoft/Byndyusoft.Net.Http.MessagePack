@@ -85,7 +85,8 @@ namespace System.Net.Http.MessagePack
         ///     cancellation.
         /// </param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public static Task<T> ReadFromMessagePackAsync<T>(this HttpContent content, CancellationToken cancellationToken = default)
+        public static Task<T> ReadFromMessagePackAsync<T>(this HttpContent content,
+            CancellationToken cancellationToken = default)
         {
             return ReadFromMessagePackAsync<T>(content, null, cancellationToken);
         }

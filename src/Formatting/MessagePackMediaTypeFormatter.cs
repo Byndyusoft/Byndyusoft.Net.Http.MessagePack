@@ -1,8 +1,8 @@
+using MessagePack;
 using System.IO;
 using System.Net.Http.Formatting;
 using System.Threading;
 using System.Threading.Tasks;
-using MessagePack;
 
 namespace System.Net.Http.MessagePack.Formatting
 {
@@ -64,9 +64,15 @@ namespace System.Net.Http.MessagePack.Formatting
         }
 
         /// <inheritdoc />
-        public override bool CanReadType(Type type) => MessagePackContent.CanSerialize(type);
+        public override bool CanReadType(Type type)
+        {
+            return MessagePackContent.CanSerialize(type);
+        }
 
         /// <inheritdoc />
-        public override bool CanWriteType(Type type) => MessagePackContent.CanSerialize(type);
+        public override bool CanWriteType(Type type)
+        {
+            return MessagePackContent.CanSerialize(type);
+        }
     }
 }

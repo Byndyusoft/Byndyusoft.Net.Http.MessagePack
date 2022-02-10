@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using MessagePack;
+using System.IO;
 using System.Threading.Tasks;
-using MessagePack;
 
 namespace System.Net.Http.Tests
 {

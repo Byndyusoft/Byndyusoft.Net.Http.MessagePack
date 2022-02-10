@@ -1,9 +1,9 @@
+using MessagePack;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
-using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
