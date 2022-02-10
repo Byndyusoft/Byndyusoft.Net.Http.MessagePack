@@ -25,7 +25,7 @@ namespace System.Net.Http.MessagePack
         public static async Task<object?> ReadFromMessagePackAsync(this HttpContent content, Type type,
             MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            Guard.NotNull(content, nameof(content));
 
             if (content is ObjectContent objectContent) return objectContent.Value;
 
@@ -67,7 +67,7 @@ namespace System.Net.Http.MessagePack
         public static async Task<T> ReadFromMessagePackAsync<T>(this HttpContent content,
             MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
         {
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            Guard.NotNull(content, nameof(content));
 
             var result = await ReadFromMessagePackAsync(content, typeof(T), options, cancellationToken)
                 .ConfigureAwait(false);

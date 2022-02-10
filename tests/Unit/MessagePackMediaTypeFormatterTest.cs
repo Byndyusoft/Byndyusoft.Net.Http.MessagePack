@@ -141,6 +141,20 @@ namespace System.Net.Http.Tests.Unit
         }
 
         [Fact]
+        public async Task ReadFromStreamAsync_ZeroContentLength_ReadsNullObject()
+        {
+            // Assert
+            var content = new StreamMessagePackHttpContent();
+            content.Headers.ContentLength = 0;
+
+            // Act
+            var result = await _formatter.ReadFromStreamAsync(typeof(object), content.Stream, content, _logger);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
         public async Task ReadFromStreamAsync_ReadsPrimitiveType()
         {
             // Arrange

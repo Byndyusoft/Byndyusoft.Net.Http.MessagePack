@@ -50,7 +50,7 @@ namespace System.Net.Http.MessagePack
             MessagePackSerializerOptions? serializerOptions = null,
             MediaTypeHeaderValue? mediaType = null)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            Guard.NotNull(type, nameof(type));
 
             var formatter = new MessagePackMediaTypeFormatter(serializerOptions);
 

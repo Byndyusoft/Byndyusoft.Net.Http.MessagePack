@@ -1,4 +1,4 @@
-﻿using MessagePack;
+using MessagePack;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +26,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, string requestUri,
             TValue value, MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
         {
-            if (client == null) throw new ArgumentNullException(nameof(client));
+            Guard.NotNull(client,nameof(client));
 
             var content = MessagePackContent.Create(value, options);
             return client.PutAsync(requestUri, content, cancellationToken);
@@ -48,7 +48,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, string requestUri,
             TValue value, CancellationToken cancellationToken = default)
         {
-            if (client == null) throw new ArgumentNullException(nameof(client));
+            Guard.NotNull(client,nameof(client));
 
             return client.PutAsMessagePackAsync(requestUri, value, null, cancellationToken);
         }
@@ -70,7 +70,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
             TValue value, MessagePackSerializerOptions? options, CancellationToken cancellationToken = default)
         {
-            if (client == null) throw new ArgumentNullException(nameof(client));
+            Guard.NotNull(client,nameof(client));
 
             var content = MessagePackContent.Create(value, options);
             return client.PutAsync(requestUri, content, cancellationToken);
@@ -92,7 +92,7 @@ namespace System.Net.Http.MessagePack
         public static Task<HttpResponseMessage> PutAsMessagePackAsync<TValue>(this HttpClient client, Uri requestUri,
             TValue value, CancellationToken cancellationToken = default)
         {
-            if (client == null) throw new ArgumentNullException(nameof(client));
+            Guard.NotNull(client,nameof(client));
 
             return client.PutAsMessagePackAsync(requestUri, value, null, cancellationToken);
         }

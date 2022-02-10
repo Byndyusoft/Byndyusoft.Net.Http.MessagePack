@@ -38,24 +38,25 @@ namespace System.Net.Http.MessagePack.Formatting
         public MessagePackSerializerOptions SerializerOptions { get; }
 
         /// <inheritdoc />
-        public override async Task<object?> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+        public override async Task<object?> ReadFromStreamAsync(Type type, Stream readStream, HttpContent? content,
             IFormatterLogger? formatterLogger, CancellationToken cancellationToken = default)
         {
-            if (type is null) throw new ArgumentNullException(nameof(type));
-            if (readStream is null) throw new ArgumentNullException(nameof(readStream));
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            Guard.NotNull(type, nameof(type));
+            Guard.NotNull(readStream, nameof(readStream));
+
+            if (content?.Headers.ContentLength == 0)
+                return null;
 
             return await MessagePackSerializer.DeserializeAsync(type, readStream, SerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public override async Task WriteToStreamAsync(Type type, object? value, Stream writeStream, HttpContent content,
+        public override async Task WriteToStreamAsync(Type type, object? value, Stream writeStream, HttpContent? content,
             TransportContext? transportContext, CancellationToken cancellationToken = default)
         {
-            if (type is null) throw new ArgumentNullException(nameof(type));
-            if (writeStream is null) throw new ArgumentNullException(nameof(writeStream));
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            Guard.NotNull(type, nameof(type));
+            Guard.NotNull(writeStream, nameof(writeStream));
 
             await MessagePackSerializer.SerializeAsync(writeStream, value, SerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
@@ -67,6 +68,6 @@ namespace System.Net.Http.MessagePack.Formatting
         /// <inheritdoc />
         public override bool CanWriteType(Type type) => CanSerialize(type);
 
-        private bool CanSerialize(Type type) => !type.IsAbstract && !type.IsInterface;
+        public static bool CanSerialize(Type type) => !type.IsAbstract && !type.IsInterface;
     }
 }
