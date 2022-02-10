@@ -56,5 +56,12 @@ namespace System.Net.Http.MessagePack
 
             return new MessagePackContent(type, value, formatter, mediaType);
         }
+
+        public static bool CanSerialize(Type type)
+        {
+            Guard.NotNull(type, nameof(type));
+
+            return !type.IsAbstract && !type.IsInterface;
+        }
     }
 }

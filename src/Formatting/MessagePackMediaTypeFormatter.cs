@@ -64,20 +64,9 @@ namespace System.Net.Http.MessagePack.Formatting
         }
 
         /// <inheritdoc />
-        public override bool CanReadType(Type type)
-        {
-            return CanSerialize(type);
-        }
+        public override bool CanReadType(Type type) => MessagePackContent.CanSerialize(type);
 
         /// <inheritdoc />
-        public override bool CanWriteType(Type type)
-        {
-            return CanSerialize(type);
-        }
-
-        public static bool CanSerialize(Type type)
-        {
-            return !type.IsAbstract && !type.IsInterface;
-        }
+        public override bool CanWriteType(Type type) => MessagePackContent.CanSerialize(type);
     }
 }
