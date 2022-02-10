@@ -1,8 +1,8 @@
-using MessagePack;
 using System.IO;
 using System.Net.Http.Formatting;
 using System.Threading;
 using System.Threading.Tasks;
+using MessagePack;
 
 namespace System.Net.Http.MessagePack.Formatting
 {
@@ -52,7 +52,8 @@ namespace System.Net.Http.MessagePack.Formatting
         }
 
         /// <inheritdoc />
-        public override async Task WriteToStreamAsync(Type type, object? value, Stream writeStream, HttpContent? content,
+        public override async Task WriteToStreamAsync(Type type, object? value, Stream writeStream,
+            HttpContent? content,
             TransportContext? transportContext, CancellationToken cancellationToken = default)
         {
             Guard.NotNull(type, nameof(type));
@@ -63,11 +64,20 @@ namespace System.Net.Http.MessagePack.Formatting
         }
 
         /// <inheritdoc />
-        public override bool CanReadType(Type type) => CanSerialize(type);
+        public override bool CanReadType(Type type)
+        {
+            return CanSerialize(type);
+        }
 
         /// <inheritdoc />
-        public override bool CanWriteType(Type type) => CanSerialize(type);
+        public override bool CanWriteType(Type type)
+        {
+            return CanSerialize(type);
+        }
 
-        public static bool CanSerialize(Type type) => !type.IsAbstract && !type.IsInterface;
+        public static bool CanSerialize(Type type)
+        {
+            return !type.IsAbstract && !type.IsInterface;
+        }
     }
 }

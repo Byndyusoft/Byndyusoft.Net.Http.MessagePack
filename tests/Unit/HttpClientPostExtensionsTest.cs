@@ -1,7 +1,7 @@
-using MessagePack;
 using System.Net.Http.MessagePack;
 using System.Threading;
 using System.Threading.Tasks;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -22,7 +22,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task PostAsMessagePackAsync_String_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.PostAsMessagePackAsync(_uri, new object(), CancellationToken.None));
+                ((HttpClient) null)!.PostAsMessagePackAsync(_uri, new object(), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -30,7 +30,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task PostAsMessagePackAsync_String_WhenUriIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                _client.PostAsMessagePackAsync(((string)null)!, new object(), CancellationToken.None));
+                _client.PostAsMessagePackAsync(((string) null)!, new object(), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);
@@ -58,7 +58,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task PostAsMessagePackAsync_Uri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.PostAsMessagePackAsync(new Uri(_uri), new object(), CancellationToken.None));
+                ((HttpClient) null)!.PostAsMessagePackAsync(new Uri(_uri), new object(), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -67,7 +67,7 @@ namespace System.Net.Http.Tests.Unit
         {
             var exception =
                 await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                    _client.PostAsMessagePackAsync(((Uri)null)!, new object(), CancellationToken.None));
+                    _client.PostAsMessagePackAsync(((Uri) null)!, new object(), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);

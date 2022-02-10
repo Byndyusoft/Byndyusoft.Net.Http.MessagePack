@@ -1,4 +1,3 @@
-using MessagePack;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +5,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.MessagePack.Formatting;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -189,7 +189,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadFromStreamAsync_ReadsComplexTypes()
         {
             // Arrange
-            var input = new ComplexType { Inner = new SimpleType { Property = 10 } };
+            var input = new ComplexType {Inner = new SimpleType {Property = 10}};
             var content = new StreamMessagePackHttpContent();
             await content.WriteObjectAsync(input, _serializerOptions);
 

@@ -1,9 +1,9 @@
-using MessagePack;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -29,12 +29,12 @@ namespace System.Net.Http.Tests.Unit
         public void Create_InputValueInvalidType_ThrowsException()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                MessagePackContent.Create(typeof(Int32),
+                MessagePackContent.Create(typeof(int),
                     new SimpleType(), MessagePackSerializerOptions.Standard, MessagePackDefaults.MediaTypeHeader));
 
             Assert.Contains(
                 @$"An object of type '{nameof(SimpleType)}' cannot be used with a type parameter of '{nameof(Int32)}'.",
-            exception.Message);
+                exception.Message);
         }
 
         [Fact]
