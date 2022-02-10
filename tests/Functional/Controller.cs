@@ -1,5 +1,5 @@
-﻿using System.Net.Http.Tests.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Tests.Models;
 
 namespace System.Net.Http.Tests.Functional
 {

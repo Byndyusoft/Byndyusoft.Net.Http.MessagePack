@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using MessagePack;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Net.Http.MessagePack.Formatting;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
-using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -108,7 +108,7 @@ namespace System.Net.Http.Tests.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.ReadFromStreamAsync(null, stream, _content, _logger));
+                    () => _formatter.ReadFromStreamAsync(null!, stream, _content, _logger));
 
             // Assert
             Assert.Equal("type", exception.ParamName);
@@ -120,7 +120,7 @@ namespace System.Net.Http.Tests.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.ReadFromStreamAsync(typeof(object), null, _content, _logger));
+                    () => _formatter.ReadFromStreamAsync(typeof(object), null!, _content, _logger));
 
             // Assert
             Assert.Equal("readStream", exception.ParamName);
@@ -132,6 +132,20 @@ namespace System.Net.Http.Tests.Unit
             // Assert
             var content = new StreamMessagePackHttpContent();
             await content.WriteObjectAsync<SimpleType>(null, _serializerOptions);
+
+            // Act
+            var result = await _formatter.ReadFromStreamAsync(typeof(object), content.Stream, content, _logger);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task ReadFromStreamAsync_ZeroContentLength_ReadsNullObject()
+        {
+            // Assert
+            var content = new StreamMessagePackHttpContent();
+            content.Headers.ContentLength = 0;
 
             // Act
             var result = await _formatter.ReadFromStreamAsync(typeof(object), content.Stream, content, _logger);
@@ -175,7 +189,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadFromStreamAsync_ReadsComplexTypes()
         {
             // Arrange
-            var input = new ComplexType {Inner = new SimpleType {Property = 10}};
+            var input = new ComplexType { Inner = new SimpleType { Property = 10 } };
             var content = new StreamMessagePackHttpContent();
             await content.WriteObjectAsync(input, _serializerOptions);
 
@@ -198,7 +212,7 @@ namespace System.Net.Http.Tests.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.WriteToStreamAsync(null, new object(), stream, _content, _context));
+                    () => _formatter.WriteToStreamAsync(null!, new object(), stream, _content, _context));
 
             // Assert
             Assert.Equal("type", exception.ParamName);
@@ -210,7 +224,7 @@ namespace System.Net.Http.Tests.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.WriteToStreamAsync(typeof(object), new object(), null, _content, _context));
+                    () => _formatter.WriteToStreamAsync(typeof(object), new object(), null!, _content, _context));
 
             // Assert
             Assert.Equal("writeStream", exception.ParamName);

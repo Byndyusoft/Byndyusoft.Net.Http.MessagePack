@@ -1,36 +1,38 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <PackageIcon>icon.png</PackageIcon>
-    <LangVersion>8</LangVersion>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RootNamespace>System.Net.Http.MessagePack</RootNamespace>
-    <PackageId>Byndyusoft.Net.Http.MessagePack</PackageId>
-    <Title>Byndyusoft.Net.Http.MessagePack</Title>
-    <Description>
-      Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<IsPackable>true</IsPackable>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<PackageIcon>icon.png</PackageIcon>
+		<LangVersion>8</LangVersion>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RootNamespace>System.Net.Http.MessagePack</RootNamespace>
+		<PackageId>Byndyusoft.Net.Http.MessagePack</PackageId>
+		<Title>Byndyusoft.Net.Http.MessagePack</Title>
+		<Description>
+			Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using MessagePack.
 
-      Commonly Used Types:
-      System.Net.Http.MessagePack.HttpClientMessagePackExtensions
-      System.Net.Http.MessagePack.HttpContentMessagePackExtensions
-      System.Net.Http.MessagePack.MessagePackContent
-      System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
-    </Description>
-    <PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
-    <Version>0.5.0</Version>
-    <Authors>Byndyusoft</Authors>
-    <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
+			Commonly Used Types:
+			System.Net.Http.MessagePack.HttpClientMessagePackExtensions
+			System.Net.Http.MessagePack.HttpContentMessagePackExtensions
+			System.Net.Http.MessagePack.MessagePackContent
+			System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
+		</Description>
+		<PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
+		<Version>0.5.1</Version>
+		<Authors>Byndyusoft</Authors>
+		<RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Byndyusoft.Net.Http" Version="0.1.0" />
-    <PackageReference Include="MessagePack" Version="2.2.85" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Byndyusoft.Net.Http" Version="0.2.0" />
+		<PackageReference Include="MessagePack" Version="2.1.90" />
+	</ItemGroup>
 
 </Project>

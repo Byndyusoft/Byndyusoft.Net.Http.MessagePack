@@ -1,7 +1,7 @@
-﻿using System.Net.Http.MessagePack;
+using MessagePack;
+using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
-using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -15,7 +15,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadFromMessagePackAsync_NullContent_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpContent) null).ReadFromMessagePackAsync(typeof(object)));
+                ((HttpContent)null)!.ReadFromMessagePackAsync(typeof(object)));
 
             Assert.Equal("content", exception.ParamName);
         }
@@ -24,7 +24,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadFromMessagePackAsync_Generic_NullContent_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpContent) null).ReadFromMessagePackAsync<object>());
+                ((HttpContent)null)!.ReadFromMessagePackAsync<object>());
 
             Assert.Equal("content", exception.ParamName);
         }

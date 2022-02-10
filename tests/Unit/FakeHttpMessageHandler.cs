@@ -1,4 +1,3 @@
-﻿using System.Net.Http.MessagePack;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -6,7 +5,7 @@ namespace System.Net.Http.Tests.Unit
 {
     public class FakeHttpMessageHandler : HttpMessageHandler
     {
-        public MessagePackContent ResponseContent { get; set; }
+        public HttpContent ResponseContent { get; set; }
 
         public HttpRequestMessage Request { get; private set; }
 
