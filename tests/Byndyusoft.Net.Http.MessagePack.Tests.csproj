@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Byndyusoft.Net.Http.MessagePack.csproj" />
+    <ProjectReference Include="$(SolutionDir)\src\Byndyusoft.Net.Http.MessagePack.csproj" />
   </ItemGroup>
 
 </Project>

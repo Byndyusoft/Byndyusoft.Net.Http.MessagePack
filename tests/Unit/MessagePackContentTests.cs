@@ -105,7 +105,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadAsByteArrayAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options, _mediaType);
 
             var bytes = await content.ReadAsByteArrayAsync();
             await using var stream = new MemoryStream(bytes);
@@ -129,7 +129,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadAsStreamArrayAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options, _mediaType);
 
             await using var stream = await content.ReadAsStreamAsync();
 
@@ -154,7 +154,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task CopyToAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options, _mediaType);
             await using var stream = new MemoryStream();
 
             await content.CopyToAsync(stream);

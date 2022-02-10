@@ -25,7 +25,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_StringUri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.GetFromMessagePackAsync(_uri, typeof(object), CancellationToken.None));
+                ((HttpClient)null!).GetFromMessagePackAsync(_uri, typeof(object), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -33,7 +33,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_StringUri_WhenUriIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                _client.GetFromMessagePackAsync(((string)null)!, typeof(object), CancellationToken.None));
+                _client.GetFromMessagePackAsync(((string)null!), typeof(object), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);
@@ -57,7 +57,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_Generic_StringUri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.GetFromMessagePackAsync<object>(_uri, CancellationToken.None));
+                ((HttpClient)null!).GetFromMessagePackAsync<object>(_uri, CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -65,7 +65,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_Generic_StringUri_WhenUriIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                _client.GetFromMessagePackAsync<object>(((string)null)!, CancellationToken.None));
+                _client.GetFromMessagePackAsync<object>(((string)null!), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);
@@ -87,7 +87,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_Uri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.GetFromMessagePackAsync(new Uri(_uri), typeof(object), CancellationToken.None));
+                ((HttpClient)null!).GetFromMessagePackAsync(new Uri(_uri), typeof(object), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -95,7 +95,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_Uri_WhenUriIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                _client.GetFromMessagePackAsync(((Uri)null)!, typeof(object), CancellationToken.None));
+                _client.GetFromMessagePackAsync(((Uri)null!), typeof(object), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);
@@ -120,7 +120,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_Generic_Uri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.GetFromMessagePackAsync<object>(new Uri(_uri), CancellationToken.None));
+                ((HttpClient)null!).GetFromMessagePackAsync<object>(new Uri(_uri), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -128,7 +128,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task GetFromMessagePackAsync_Generic_Uri_WhenUriIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                _client.GetFromMessagePackAsync<object>(((Uri)null)!, CancellationToken.None));
+                _client.GetFromMessagePackAsync<object>(((Uri)null!), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);

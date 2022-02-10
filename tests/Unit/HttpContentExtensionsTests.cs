@@ -15,7 +15,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadFromMessagePackAsync_NullContent_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpContent)null)!.ReadFromMessagePackAsync(typeof(object)));
+                ((HttpContent)null!).ReadFromMessagePackAsync(typeof(object)));
 
             Assert.Equal("content", exception.ParamName);
         }
@@ -24,7 +24,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task ReadFromMessagePackAsync_Generic_NullContent_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpContent)null)!.ReadFromMessagePackAsync<object>());
+                ((HttpContent)null!).ReadFromMessagePackAsync<object>());
 
             Assert.Equal("content", exception.ParamName);
         }
@@ -43,7 +43,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadFromMessagePackAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options);
 
             var model = await content.ReadFromMessagePackAsync(typeof(SimpleType), _options);
 
@@ -63,7 +63,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadFromMessagePackAsync_Generic_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options);
 
             var model = await content.ReadFromMessagePackAsync<SimpleType>(_options);
 

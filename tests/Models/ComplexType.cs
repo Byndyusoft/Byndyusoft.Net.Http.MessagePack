@@ -6,7 +6,7 @@ namespace System.Net.Http.Tests.Models
     [MessagePackObject]
     public class ComplexType
     {
-        [Key(1)] public SimpleType Inner { get; set; }
+        [Key(1)] public SimpleType Inner { get; set; } = default!;
 
         public static ComplexType Create()
         {

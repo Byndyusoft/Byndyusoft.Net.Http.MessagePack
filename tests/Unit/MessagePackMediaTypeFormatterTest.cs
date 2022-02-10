@@ -13,9 +13,9 @@ namespace System.Net.Http.Tests.Unit
     public class MessagePackMediaTypeFormatterTest
     {
         private readonly HttpContent _content;
-        private readonly TransportContext _context = null;
+        private readonly TransportContext? _context = null;
         private readonly MessagePackMediaTypeFormatter _formatter;
-        private readonly IFormatterLogger _logger = null;
+        private readonly IFormatterLogger? _logger = null;
         private readonly MessagePackSerializerOptions _serializerOptions;
 
         public MessagePackMediaTypeFormatterTest()
@@ -131,7 +131,7 @@ namespace System.Net.Http.Tests.Unit
         {
             // Assert
             var content = new StreamMessagePackHttpContent();
-            await content.WriteObjectAsync<SimpleType>(null, _serializerOptions);
+            await content.WriteObjectAsync<SimpleType>(null!, _serializerOptions);
 
             // Act
             var result = await _formatter.ReadFromStreamAsync(typeof(object), content.Stream, content, _logger);

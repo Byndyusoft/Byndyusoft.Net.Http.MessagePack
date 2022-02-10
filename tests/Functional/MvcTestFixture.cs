@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,8 +10,8 @@ namespace System.Net.Http.Tests.Functional
     public abstract class MvcTestFixture : IDisposable
     {
         private readonly string _url;
-        private HttpClient _client;
-        private IHost _host;
+        private HttpClient? _client;
+        private IHost? _host;
 
         protected MvcTestFixture()
         {
