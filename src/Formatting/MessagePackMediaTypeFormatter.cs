@@ -53,13 +53,12 @@ namespace System.Net.Http.MessagePack.Formatting
 
         /// <inheritdoc />
         public override async Task WriteToStreamAsync(Type type, object? value, Stream writeStream,
-            HttpContent? content,
-            TransportContext? transportContext, CancellationToken cancellationToken = default)
+            HttpContent? content, TransportContext? transportContext, CancellationToken cancellationToken = default)
         {
             Guard.NotNull(type, nameof(type));
             Guard.NotNull(writeStream, nameof(writeStream));
 
-            await MessagePackSerializer.SerializeAsync(writeStream, value, SerializerOptions, cancellationToken)
+            await MessagePackSerializer.SerializeAsync(type, writeStream, value, SerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
         }
 
