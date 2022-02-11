@@ -202,7 +202,6 @@ namespace System.Net.Http.Tests.Unit
             Assert.Equal(input.Inner.Property, model.Inner.Property);
         }
 
-
         [Fact]
         public async Task WriteToStreamAsync_WhenTypeIsNull_ThrowsException()
         {

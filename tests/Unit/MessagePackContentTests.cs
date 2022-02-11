@@ -36,6 +36,16 @@ namespace System.Net.Http.Tests.Unit
                 @$"An object of type '{nameof(SimpleType)}' cannot be used with a type parameter of '{nameof(Int32)}'.",
                 exception.Message);
         }
+        [Fact]
+        public void Create_NullValue_Test()
+        {
+            var content = MessagePackContent.Create(typeof(object), null, _options, _mediaType);
+
+            Assert.Null(content.Value);
+            Assert.Same(typeof(object), content.ObjectType);
+            Assert.Equal(_mediaType, content.Headers.ContentType);
+            Assert.Same(_options, content.SerializerOptions);
+        }
 
         [Fact]
         public void Create_Test()

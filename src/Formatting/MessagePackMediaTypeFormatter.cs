@@ -44,6 +44,9 @@ namespace System.Net.Http.MessagePack.Formatting
             Guard.NotNull(type, nameof(type));
             Guard.NotNull(readStream, nameof(readStream));
 
+            if (content is ObjectContent objectContent)
+                return objectContent.Value;
+
             var length = content?.Headers.ContentLength ?? -1;
             if (length == 0)
                 return null;
