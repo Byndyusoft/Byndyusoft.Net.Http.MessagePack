@@ -28,8 +28,8 @@ namespace System.Net.Http.MessagePack.Formatting
         public MessagePackMediaTypeFormatter(MessagePackSerializerOptions? options = null)
         {
             SerializerOptions = options ?? MessagePackDefaults.SerializerOptions;
-            SupportedMediaTypes.Add(MessagePackDefaults.MediaTypeHeaders.ApplicationXMessagePack);
             SupportedMediaTypes.Add(MessagePackDefaults.MediaTypeHeaders.ApplicationMessagePack);
+            SupportedMediaTypes.Add(MessagePackDefaults.MediaTypeHeaders.ApplicationXMessagePack);
         }
 
         /// <summary>
@@ -44,7 +44,8 @@ namespace System.Net.Http.MessagePack.Formatting
             Guard.NotNull(type, nameof(type));
             Guard.NotNull(readStream, nameof(readStream));
 
-            if (content?.Headers.ContentLength == 0)
+            var length = content?.Headers.ContentLength ?? -1;
+            if (length == 0)
                 return null;
 
             return await MessagePackSerializer.DeserializeAsync(type, readStream, SerializerOptions, cancellationToken)
