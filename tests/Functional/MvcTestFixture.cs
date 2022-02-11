@@ -49,6 +49,8 @@ namespace System.Net.Http.Tests.Functional
 
             _client?.Dispose();
             _client = null;
+
+            GC.SuppressFinalize(this);
         }
 
         public void Configure(IApplicationBuilder app)
