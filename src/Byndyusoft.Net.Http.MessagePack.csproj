@@ -19,14 +19,14 @@
 			System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
 		</Description>
 		<PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
-		<Version>0.5.1</Version>
+		<Version>0.5.2</Version>
 		<Authors>Byndyusoft</Authors>
 		<RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
+		<None Include="$(SolutionDir)\icon.png" Pack="true" PackagePath="icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
