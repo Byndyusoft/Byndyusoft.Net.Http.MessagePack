@@ -1,8 +1,8 @@
-﻿using MessagePack;
-using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http.MessagePack;
+﻿using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
+using MessagePack;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace System.Net.Http.Tests.Functional

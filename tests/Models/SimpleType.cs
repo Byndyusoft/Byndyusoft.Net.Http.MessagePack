@@ -1,5 +1,5 @@
-using MessagePack;
 using System.IO;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Models
@@ -7,7 +7,7 @@ namespace System.Net.Http.Tests.Models
     [MessagePackObject]
     public class SimpleType
     {
-        [Key(1)] public string Field;
+        [Key(1)] public string Field = default!;
 
         [Key(0)] public int Property { get; set; }
 
@@ -15,16 +15,16 @@ namespace System.Net.Http.Tests.Models
 
         [Key(3)] public int? Nullable { get; set; }
 
-        [Key(4)] public int[] Array { get; set; }
+        [Key(4)] public int[] Array { get; set; } = default!;
 
         public static SimpleType Create()
         {
-            return new SimpleType
+            return new()
             {
                 Property = 10,
                 Enum = SeekOrigin.Current,
                 Field = "string",
-                Array = new[] { 1, 2 },
+                Array = new[] {1, 2},
                 Nullable = 100
             };
         }

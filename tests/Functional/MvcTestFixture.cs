@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+using System.Net.Sockets;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Net.Sockets;
 
 namespace System.Net.Http.Tests.Functional
 {
     public abstract class MvcTestFixture : IDisposable
     {
         private readonly string _url;
-        private HttpClient _client;
-        private IHost _host;
+        private HttpClient? _client;
+        private IHost? _host;
 
         protected MvcTestFixture()
         {
@@ -34,7 +34,7 @@ namespace System.Net.Http.Tests.Functional
             {
                 if (_client == null)
                 {
-                    _client = new HttpClient { BaseAddress = new Uri(_url) };
+                    _client = new HttpClient {BaseAddress = new Uri(_url)};
                     ConfigureHttpClient(_client);
                 }
 
@@ -49,6 +49,8 @@ namespace System.Net.Http.Tests.Functional
 
             _client?.Dispose();
             _client = null;
+
+            GC.SuppressFinalize(this);
         }
 
         public void Configure(IApplicationBuilder app)
@@ -74,7 +76,7 @@ namespace System.Net.Http.Tests.Functional
         {
             var listener = new TcpListener(IPAddress.Loopback, 0);
             listener.Start();
-            var port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            var port = ((IPEndPoint) listener.LocalEndpoint).Port;
             listener.Stop();
             return port;
         }

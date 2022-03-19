@@ -1,6 +1,6 @@
-﻿using MessagePack;
-using MessagePack.Resolvers;
 using System.Net.Http.Headers;
+using MessagePack;
+using MessagePack.Resolvers;
 
 namespace System.Net.Http.MessagePack
 {
@@ -8,10 +8,10 @@ namespace System.Net.Http.MessagePack
     {
         public static readonly string MediaTypeFormat = "msgpack";
 
-        public static readonly string MediaType = MediaTypes.ApplicationXMessagePack;
+        public static readonly string MediaType = MediaTypes.ApplicationMessagePack;
 
         public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader =
-            new MediaTypeWithQualityHeaderValue(MediaType);
+            new(MediaType);
 
         public static readonly MessagePackSerializerOptions SerializerOptions =
             MessagePackSerializerOptions.Standard
@@ -20,10 +20,10 @@ namespace System.Net.Http.MessagePack
         public static class MediaTypeHeaders
         {
             public static readonly MediaTypeWithQualityHeaderValue ApplicationMessagePack =
-                new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationMessagePack);
+                new(MediaTypes.ApplicationMessagePack);
 
             public static readonly MediaTypeWithQualityHeaderValue ApplicationXMessagePack =
-                new MediaTypeWithQualityHeaderValue(MediaTypes.ApplicationXMessagePack);
+                new(MediaTypes.ApplicationXMessagePack);
         }
 
         public static class MediaTypes

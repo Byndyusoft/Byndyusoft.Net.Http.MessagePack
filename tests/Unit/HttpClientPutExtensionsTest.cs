@@ -1,7 +1,7 @@
-using MessagePack;
 using System.Net.Http.MessagePack;
 using System.Threading;
 using System.Threading.Tasks;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -22,7 +22,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task PutAsMessagePackAsync_StringUri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.PutAsMessagePackAsync(_uri, new object(), CancellationToken.None));
+                ((HttpClient) null!).PutAsMessagePackAsync(_uri, new object(), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -30,7 +30,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task PutAsMessagePackAsync_StringUri_WhenUriIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                _client.PutAsMessagePackAsync(((string)null)!, new object()));
+                _client.PutAsMessagePackAsync((string) null!, new object()));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);
@@ -41,7 +41,7 @@ namespace System.Net.Http.Tests.Unit
         {
             var response = await _client.PutAsMessagePackAsync(_uri, new object(), CancellationToken.None);
 
-            var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
+            var content = Assert.IsType<MessagePackContent>(response.RequestMessage?.Content);
             Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
 
@@ -50,7 +50,7 @@ namespace System.Net.Http.Tests.Unit
         {
             var response = await _client.PutAsMessagePackAsync(_uri, new object(), _options, CancellationToken.None);
 
-            var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
+            var content = Assert.IsType<MessagePackContent>(response.RequestMessage?.Content);
             Assert.Same(_options, content.SerializerOptions);
         }
 
@@ -58,7 +58,7 @@ namespace System.Net.Http.Tests.Unit
         public async Task PutAsMessagePackAsync_Uri_WhenClientIsNull_ThrowsException()
         {
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                ((HttpClient)null)!.PutAsMessagePackAsync(new Uri(_uri), new object(), CancellationToken.None));
+                ((HttpClient) null!).PutAsMessagePackAsync(new Uri(_uri), new object(), CancellationToken.None));
             Assert.Equal("client", exception.ParamName);
         }
 
@@ -67,7 +67,7 @@ namespace System.Net.Http.Tests.Unit
         {
             var exception =
                 await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                    _client.PutAsMessagePackAsync(((Uri)null)!, new object(), CancellationToken.None));
+                    _client.PutAsMessagePackAsync((Uri) null!, new object(), CancellationToken.None));
             Assert.Equal(
                 "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
                 exception.Message);
@@ -79,7 +79,7 @@ namespace System.Net.Http.Tests.Unit
             var response =
                 await _client.PutAsMessagePackAsync(new Uri(_uri), new object(), _options, CancellationToken.None);
 
-            var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
+            var content = Assert.IsType<MessagePackContent>(response.RequestMessage?.Content);
             Assert.Same(_options, content.SerializerOptions);
         }
 
@@ -88,7 +88,7 @@ namespace System.Net.Http.Tests.Unit
         {
             var response = await _client.PutAsMessagePackAsync(new Uri(_uri), new object(), CancellationToken.None);
 
-            var content = Assert.IsType<MessagePackContent>(response.RequestMessage.Content);
+            var content = Assert.IsType<MessagePackContent>(response.RequestMessage?.Content);
             Assert.Same(MessagePackDefaults.SerializerOptions, content.SerializerOptions);
         }
     }

@@ -1,9 +1,9 @@
-using MessagePack;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -35,6 +35,17 @@ namespace System.Net.Http.Tests.Unit
             Assert.Contains(
                 @$"An object of type '{nameof(SimpleType)}' cannot be used with a type parameter of '{nameof(Int32)}'.",
                 exception.Message);
+        }
+
+        [Fact]
+        public void Create_NullValue_Test()
+        {
+            var content = MessagePackContent.Create(typeof(object), null, _options, _mediaType);
+
+            Assert.Null(content.Value);
+            Assert.Same(typeof(object), content.ObjectType);
+            Assert.Equal(_mediaType, content.Headers.ContentType);
+            Assert.Same(_options, content.SerializerOptions);
         }
 
         [Fact]
@@ -105,7 +116,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadAsByteArrayAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options, _mediaType);
 
             var bytes = await content.ReadAsByteArrayAsync();
             await using var stream = new MemoryStream(bytes);
@@ -129,7 +140,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task ReadAsStreamArrayAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options, _mediaType);
 
             await using var stream = await content.ReadAsStreamAsync();
 
@@ -154,7 +165,7 @@ namespace System.Net.Http.Tests.Unit
         [Fact]
         public async Task CopyToAsync_NullObject_Test()
         {
-            var content = MessagePackContent.Create<SimpleType>(null, _options, _mediaType);
+            var content = MessagePackContent.Create<SimpleType>(null!, _options, _mediaType);
             await using var stream = new MemoryStream();
 
             await content.CopyToAsync(stream);
