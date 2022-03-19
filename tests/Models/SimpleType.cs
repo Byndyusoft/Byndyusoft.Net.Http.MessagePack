@@ -1,5 +1,5 @@
-using MessagePack;
 using System.IO;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Models
@@ -19,12 +19,12 @@ namespace System.Net.Http.Tests.Models
 
         public static SimpleType Create()
         {
-            return new SimpleType
+            return new()
             {
                 Property = 10,
                 Enum = SeekOrigin.Current,
                 Field = "string",
-                Array = new[] { 1, 2 },
+                Array = new[] {1, 2},
                 Nullable = 100
             };
         }

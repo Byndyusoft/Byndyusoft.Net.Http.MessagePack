@@ -1,5 +1,4 @@
 #if NET5_0_OR_GREATER
-
 using System.Net.Http.Formatting;
 using System.Net.Http.MessagePack.Formatting;
 using System.Runtime.CompilerServices;

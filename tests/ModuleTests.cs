@@ -13,11 +13,13 @@ namespace System.Net.Http.Tests
         public void Init_Test()
         {
             // assert
-            var writer = MediaTypeFormatterCollection.Default.FindWriter(typeof(string), MessagePackDefaults.MediaTypeHeader);
+            var writer =
+                MediaTypeFormatterCollection.Default.FindWriter(typeof(string), MessagePackDefaults.MediaTypeHeader);
             Assert.NotNull(writer);
             Assert.IsType<MessagePackMediaTypeFormatter>(writer);
-            
-            var reader = MediaTypeFormatterCollection.Default.FindReader(typeof(string), MessagePackDefaults.MediaTypeHeader);
+
+            var reader =
+                MediaTypeFormatterCollection.Default.FindReader(typeof(string), MessagePackDefaults.MediaTypeHeader);
             Assert.NotNull(reader);
             Assert.IsType<MessagePackMediaTypeFormatter>(reader);
         }

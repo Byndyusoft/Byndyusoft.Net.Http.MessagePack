@@ -1,7 +1,7 @@
-using MessagePack;
 using System.Net.Http.MessagePack.Formatting;
 using System.Threading;
 using System.Threading.Tasks;
+using MessagePack;
 
 namespace System.Net.Http.MessagePack
 {
@@ -71,7 +71,7 @@ namespace System.Net.Http.MessagePack
 
             var result = await ReadFromMessagePackAsync(content, typeof(T), options, cancellationToken)
                 .ConfigureAwait(false);
-            return (T)result!;
+            return (T) result!;
         }
 
         /// <summary>

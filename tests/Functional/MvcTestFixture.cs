@@ -1,9 +1,9 @@
+using System.Net.Sockets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.Net.Sockets;
 
 namespace System.Net.Http.Tests.Functional
 {
@@ -34,7 +34,7 @@ namespace System.Net.Http.Tests.Functional
             {
                 if (_client == null)
                 {
-                    _client = new HttpClient { BaseAddress = new Uri(_url) };
+                    _client = new HttpClient {BaseAddress = new Uri(_url)};
                     ConfigureHttpClient(_client);
                 }
 
@@ -76,7 +76,7 @@ namespace System.Net.Http.Tests.Functional
         {
             var listener = new TcpListener(IPAddress.Loopback, 0);
             listener.Start();
-            var port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            var port = ((IPEndPoint) listener.LocalEndpoint).Port;
             listener.Stop();
             return port;
         }

@@ -1,6 +1,6 @@
-using MessagePack;
 using System.Net.Http.Headers;
 using System.Net.Http.MessagePack.Formatting;
+using MessagePack;
 
 namespace System.Net.Http.MessagePack
 {

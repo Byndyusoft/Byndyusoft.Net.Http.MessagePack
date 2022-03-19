@@ -10,7 +10,7 @@ namespace System.Net.Http.Tests.Models
 
         public static ComplexType Create()
         {
-            return new ComplexType
+            return new()
             {
                 Inner = SimpleType.Create()
             };

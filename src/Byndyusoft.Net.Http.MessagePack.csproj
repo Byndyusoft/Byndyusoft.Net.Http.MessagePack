@@ -30,7 +30,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Byndyusoft.Net.Http" Version="0.2.0" />
-		<PackageReference Include="MessagePack" Version="2.1.90" />
+		<PackageReference Include="MessagePack" Version="2.3.85" />
 	</ItemGroup>
 
 </Project>

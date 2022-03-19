@@ -1,9 +1,9 @@
-using MessagePack;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Http.MessagePack;
 using System.Net.Http.Tests.Models;
 using System.Threading.Tasks;
+using MessagePack;
 using Xunit;
 
 namespace System.Net.Http.Tests.Unit
@@ -36,6 +36,7 @@ namespace System.Net.Http.Tests.Unit
                 @$"An object of type '{nameof(SimpleType)}' cannot be used with a type parameter of '{nameof(Int32)}'.",
                 exception.Message);
         }
+
         [Fact]
         public void Create_NullValue_Test()
         {

@@ -1,6 +1,6 @@
-using MessagePack;
 using System.Threading;
 using System.Threading.Tasks;
+using MessagePack;
 
 namespace System.Net.Http.MessagePack
 {
