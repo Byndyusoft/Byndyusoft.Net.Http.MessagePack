@@ -32,7 +32,7 @@ namespace System.Net.Http.Tests.Unit
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
                 _client.PostAsMessagePackAsync((string) null!, new object(), CancellationToken.None));
             Assert.Equal(
-                "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
+                "An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.",
                 exception.Message);
         }
 
@@ -69,7 +69,7 @@ namespace System.Net.Http.Tests.Unit
                 await Assert.ThrowsAsync<InvalidOperationException>(() =>
                     _client.PostAsMessagePackAsync((Uri) null!, new object(), CancellationToken.None));
             Assert.Equal(
-                "An invalid request URI was provided. The request URI must either be an absolute URI or BaseAddress must be set.",
+                "An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.",
                 exception.Message);
         }
 
