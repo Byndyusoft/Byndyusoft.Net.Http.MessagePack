@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: install dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
           
@@ -22,7 +22,7 @@ jobs:
         run: dotnet build
         
       - name: publish
-        uses: alirezanet/publish-nuget@v3.0.0
+        uses: alirezanet/publish-nuget@v3.1.0
         with:
           PROJECT_FILE_PATH: src/Byndyusoft.Net.Http.MessagePack.csproj
           VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
