@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
-		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RootNamespace>System.Net.Http.MessagePack</RootNamespace>
@@ -18,7 +18,7 @@
 			System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
 		</Description>
 		<PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
-		<Version>0.5.4</Version>
+		<Version>0.6.0</Version>
 		<Authors>Byndyusoft</Authors>
 		<RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -30,7 +30,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Byndyusoft.Net.Http" Version="0.4.4" />
-		<PackageReference Include="MessagePack" Version="2.5.192" />
+		<PackageReference Include="MessagePack" Version="3.1.0" />
 	</ItemGroup>
 
 </Project>
