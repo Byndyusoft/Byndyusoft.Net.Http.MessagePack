@@ -28,8 +28,9 @@ namespace System.Net.Http.MessagePack.Formatting
         public MessagePackMediaTypeFormatter(MessagePackSerializerOptions? options = null)
         {
             SerializerOptions = options ?? MessagePackDefaults.SerializerOptions;
-            SupportedMediaTypes.Add(MessagePackDefaults.MediaTypeHeaders.ApplicationMessagePack);
+            
             SupportedMediaTypes.Add(MessagePackDefaults.MediaTypeHeaders.ApplicationXMessagePack);
+            SupportedMediaTypes.Add(MessagePackDefaults.MediaTypeHeaders.ApplicationMessagePack);
         }
 
         /// <summary>

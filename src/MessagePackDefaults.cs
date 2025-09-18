@@ -8,7 +8,7 @@ namespace System.Net.Http.MessagePack
     {
         public static readonly string MediaTypeFormat = "msgpack";
 
-        public static readonly string MediaType = MediaTypes.ApplicationMessagePack;
+        public static readonly string MediaType = MediaTypes.ApplicationXMessagePack;
 
         public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader =
             new(MediaType);
