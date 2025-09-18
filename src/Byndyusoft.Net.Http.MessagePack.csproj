@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
@@ -18,7 +18,7 @@
 			System.Net.Http.MessagePack.Formatting.MessagePackMediaTypeFormatter
 		</Description>
 		<PackageTags>Byndyusoft;Net;Http;MessagePack</PackageTags>
-		<Version>0.6.0</Version>
+		<Version>0.6.1</Version>
 		<Authors>Byndyusoft</Authors>
 		<RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.MessagePack</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

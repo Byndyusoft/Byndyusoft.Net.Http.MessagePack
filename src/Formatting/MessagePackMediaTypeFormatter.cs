@@ -47,9 +47,9 @@ namespace System.Net.Http.MessagePack.Formatting
             if (content is ObjectContent objectContent)
                 return objectContent.Value;
 
-            var length = content?.Headers.ContentLength ?? -1;
-            if (length == 0)
+            if (content?.Headers.ContentLength == 0)
                 return null;
+
 
             return await MessagePackSerializer.DeserializeAsync(type, readStream, SerializerOptions, cancellationToken)
                 .ConfigureAwait(false);

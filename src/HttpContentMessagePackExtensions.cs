@@ -30,7 +30,11 @@ namespace System.Net.Http.MessagePack
             if (content is ObjectContent objectContent) return objectContent.Value;
 
             var formatter = new MessagePackMediaTypeFormatter(options);
+#if NET5_0_OR_GREATER
+            await using var readStream = await content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+#else
             using var readStream = await content.ReadAsStreamAsync().ConfigureAwait(false);
+#endif
             return await formatter.ReadFromStreamAsync(type, readStream, content, null, cancellationToken)
                 .ConfigureAwait(false);
         }
