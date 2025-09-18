@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
-		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8</TargetFrameworks>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RootNamespace>System.Net.Http.MessagePack</RootNamespace>
